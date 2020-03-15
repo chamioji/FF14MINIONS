@@ -11,5 +11,39 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require material_icons
  *= require_self
  */
+
+@import "materialize/components/color-variables";
+$primary-color: #3D5A99 !default;
+@import 'materialize';
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.header__character-image {
+  border-radius: 50%;
+  height: 50px;
+  width:  50px;
+  vertical-align: middle;
+}
+
+.body {
+  margin: 40px auto;
+}
+
+.content__body {
+  padding: 40px 20px;
+}
+
+.pagination {
+  text-align: center
+}

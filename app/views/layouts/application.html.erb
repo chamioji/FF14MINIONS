@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>FF14MINIONS</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+
+    <nav>
+      <div class="nav-wrapper">
+        <%= link_to 'FF14MINIONS', root_path, class: "brand-logo" %>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><%= link_to 'このサイトについて', about_path %></li>
+          <li><%= link_to 'ミニオン', minions_path %></li>
+          <li><%= link_to 'ランキング', root_path %></li>
+          <li><%= image_tag ENV["CHARACTER_IMAGE_URL"], class: "header__character-image" %></li>
+          <!-- ドロップダウンのトリガー -->
+          <li>
+            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+              キャラクター名(サーバー名)
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <!-- ドロップダウンの内容 -->
+          <ul id="dropdown1" class="dropdown-content">
+            <li class="divider"></li>
+            <li><%= link_to 'マイページ', root_path %></li>
+            <li><%= link_to 'Lodestone', root_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to 'ログアウト', root_path %></li>
+          </ul>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <h5 class="white-text">FF14MINIONS</h5>
+        <p class="white-text">Final Fantsy XIVのコレクション要素"ミニオン"の取得状況ランキングサイトです。</p>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          <p class="white-text">Copyright (C) 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
   </body>
+
 </html>
