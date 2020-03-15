@@ -3,7 +3,7 @@ class CreateMinions < ActiveRecord::Migration[5.2]
     create_table :minions do |t|
       t.string :name
       t.string :image_url
-      t.references :category, foreign_key: true
+      t.integer :category_id
 
       t.timestamps
     end
