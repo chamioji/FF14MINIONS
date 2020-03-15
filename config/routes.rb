@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   root 'home#top'
   get 'home/about' => 'home#about', as: 'about'
+
+  devise_for :users
+
+  resources :users, only: [:show]
   resources :minions, only: [:index]
 
 end

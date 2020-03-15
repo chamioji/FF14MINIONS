@@ -32,13 +32,22 @@
             <li><%= link_to 'マイページ', root_path %></li>
             <li><%= link_to 'Lodestone', root_path %></li>
             <li class="divider"></li>
-            <li><%= link_to 'ログアウト', root_path %></li>
+            <!-- ログイン状況による分岐まで仮設置 -->
+            <% unless user_signed_in? %>
+              <li><%= link_to '新規登録', new_user_registration_path %></li>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <% end %>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           </ul>
         </ul>
       </div>
     </nav>
 
     <main>
+      <!-- ログイン状況による分岐まで仮設置 -->
+      <% if user_signed_in? %>
+        ログイン中
+      <% end %>
       <%= yield %>
     </main>
 

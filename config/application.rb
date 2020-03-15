@@ -15,5 +15,11 @@ module FF14MINIONS
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # formがエラー時に出力する<div class="field_with_errors"></div>を制御する
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      %Q(#{html_tag}).html_safe
+    end
+
   end
 end
