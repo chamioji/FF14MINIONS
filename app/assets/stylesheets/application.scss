@@ -20,6 +20,7 @@ $primary-color: #3D5A99 !default;
 @import 'materialize';
 
 body {
+  background-color: #333333;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -40,21 +41,24 @@ main {
   margin: 40px auto;
 }
 
+.content__title {
+  color: #FFFFFF;
+  background-color: $primary-color;
+}
+
 .content__body {
-  padding: 40px 20px;
+  color: #FFFFFF;
+  background-color: #262626;
+  padding: 20px 20px;
 }
 
 .pagination {
   text-align: center;
 }
 
-.user__profile--button {
+.user__profile--data {
+  align-items: center;
   display:flex;
-  flex-direction: row-reverse;
-}
-
-.user__profile--name {
-  background-color: black;
 }
 
 .user__minion-sort--list {

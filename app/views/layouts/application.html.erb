@@ -29,15 +29,19 @@
             <!-- ドロップダウンのトリガー -->
             <li>
               <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-                キャラクター名(サーバー名)
+                <% if current_user.url == nil %>
+                  キャラクターが読み込まれていません
+                <% else %>
+                  <%= current_user.name %>
+                <% end %>
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
             <!-- ドロップダウンの内容 -->
             <ul id="dropdown1" class="dropdown-content">
               <li class="divider"></li>
-                <li><%= link_to 'マイページ', user_path(current_user) %></li>
-                <li><%= link_to 'Lodestone', current_user.url %></li>
+                <li><%= link_to 'キャラクター', user_path(current_user) %></li>
+                <li><%= link_to 'アカウント', root_path %></li>
                 <li class="divider"></li>
                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
               </ul>

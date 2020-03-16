@@ -38,14 +38,13 @@
             <strong>キャラクター</strong>
           </div>
           <div class="content__body z-depth-1">
-            <%= image_tag @user.image_url, class: "header__character-image" %>
-            キャラクター名(サーバー名) <div class="chip">RANK: #1</div>
-            <% if @user == current_user %>
-              <%= link_to "同期", {controller: 'users', action: 'sync'}, method: :post, class: "btn waves-effect waves-light" %>
-              <a class="waves-effect waves-light btn">ツイートする</a>
-              <a class="waves-effect waves-light btn">編集する</a>
-              <a class="waves-effect waves-light btn">退会する</a>
-            <% end %>
+            <div class="user__profile--data">
+              <%= image_tag @user.image_url, class: "header__character-image" %>
+              <i class="material-icons">person</i><%= @user.name %>
+              <i class="material-icons">place</i><%= @user.server %>
+              <i class="material-icons">star</i>RANK: #1
+              <i class="material-icons">import_contacts</i><%= link_to "Lodestone", @user.url, target: :_blank %>
+            </div>
           </div>
         </div>
       </div>
@@ -56,6 +55,12 @@
             <strong>ミニオン取得数</strong>
           </div>
           <div class="content__body z-depth-1">
+            <div class="user__profile--button">
+              <% if @user == current_user %>
+                <%= link_to "同期", {controller: 'users', action: 'sync'}, method: :post, class: "btn waves-effect waves-light" %>
+                <a class="waves-effect waves-light btn">ツイートする</a>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

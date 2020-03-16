@@ -11,9 +11,7 @@ class UsersController < ApplicationController
 
   def import
     url = params[:url]
-
     charset = nil
-    image_url = []
 
     html = open(url) do |f|
       charset = f.charset
@@ -21,13 +19,15 @@ class UsersController < ApplicationController
     end
 
     doc = Nokogiri::HTML.parse(html, nil, charset)
-
-    doc.xpath('//img[@class="character-block__face"]').each do |node|
-      image_url = node[:src]
-    end
+    image_url =doc.xpath('//img[@class="character-block__face"]').attr('src')
+    name = doc.xpath('//p[@class="frame__chara__name"]').text
+    server = doc.xpath('//p[@class="frame__chara__world"]').text
 
     current_user.url = url
     current_user.image_url = image_url
+    current_user.name = name
+    current_user.server = server
+
     if current_user.save
       redirect_to user_path(current_user)
     else
@@ -36,9 +36,7 @@ class UsersController < ApplicationController
 
   def sync
     url = current_user.url
-
     charset = nil
-    image_url = []
 
     html = open(url) do |f|
       charset = f.charset
@@ -46,13 +44,14 @@ class UsersController < ApplicationController
     end
 
     doc = Nokogiri::HTML.parse(html, nil, charset)
+    image_url =doc.xpath('//img[@class="character-block__face"]').attr('src')
+    name = doc.xpath('//p[@class="frame__chara__name"]').text
+    server = doc.xpath('//p[@class="frame__chara__world"]').text
 
-    doc.xpath('//img[@class="character-block__face"]').each do |node|
-      image_url = node[:src]
-    end
-
-    current_user.url = url
     current_user.image_url = image_url
+    current_user.name = name
+    current_user.server = server
+
     if current_user.save
       redirect_to user_path(current_user)
     else
