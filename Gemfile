@@ -68,6 +68,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
+gem 'nokogiri'
 
 group :production do
   gem 'mysql2'

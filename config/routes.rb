@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:show]
+  post 'users/:id/import' => 'users#import'
+  post 'users/:id/sync' =>'users#sync'
   resources :minions, only: [:index]
 
 end

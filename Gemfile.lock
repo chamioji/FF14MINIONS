@@ -244,6 +244,7 @@ DEPENDENCIES
   material_icons
   materialize-sass (~> 1.0.0)
   mysql2
+  nokogiri
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.1)
   sass-rails (~> 5.0)

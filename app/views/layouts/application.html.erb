@@ -15,45 +15,56 @@
       <div class="nav-wrapper">
         <%= link_to 'FF14MINIONS', root_path, class: "brand-logo" %>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><%= link_to 'このサイトについて', about_path %></li>
-          <li><%= link_to 'ミニオン', minions_path %></li>
-          <li><%= link_to 'ランキング', root_path %></li>
-          <li><%= image_tag ENV["CHARACTER_IMAGE_URL"], class: "header__character-image" %></li>
-          <!-- ドロップダウンのトリガー -->
-          <li>
-            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-              キャラクター名(サーバー名)
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
-          <!-- ドロップダウンの内容 -->
-          <ul id="dropdown1" class="dropdown-content">
-            <li class="divider"></li>
-
-            <!-- ログイン状況による分岐まで仮設置 -->
-            <% if user_signed_in? %>
-             <li><%= link_to 'マイページ', user_path(current_user) %></li>
-            <% end %>
-
-
-            <li><%= link_to 'Lodestone', root_path %></li>
-            <li class="divider"></li>
-            <!-- ログイン状況による分岐まで仮設置 -->
-            <% unless user_signed_in? %>
-              <li><%= link_to '新規登録', new_user_registration_path %></li>
-              <li><%= link_to 'ログイン', new_user_session_path %></li>
-            <% end %>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-          </ul>
+          <% if user_signed_in? %>
+            <li><%= link_to 'このサイトについて', about_path %></li>
+            <li><%= link_to 'ミニオン', minions_path %></li>
+            <li><%= link_to 'ランキング', root_path %></li>
+            <li>
+              <% if current_user.url == nil %>
+                <%= image_tag "no_image.png", class: "header__character-image" %>
+              <% else %>
+                <%= image_tag current_user.image_url, class: "header__character-image" %>
+              <% end %>
+            </li>
+            <!-- ドロップダウンのトリガー -->
+            <li>
+              <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                キャラクター名(サーバー名)
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <!-- ドロップダウンの内容 -->
+            <ul id="dropdown1" class="dropdown-content">
+              <li class="divider"></li>
+                <li><%= link_to 'マイページ', user_path(current_user) %></li>
+                <li><%= link_to 'Lodestone', current_user.url %></li>
+                <li class="divider"></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+              </ul>
+            </ul>
+          <% else %>
+            <li><%= link_to 'このサイトについて', about_path %></li>
+            <li><%= image_tag "no_image.png", class: "header__character-image" %></li>
+            <!-- ドロップダウンのトリガー -->
+            <li>
+              <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                ログインしてください
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <!-- ドロップダウンの内容 -->
+            <ul id="dropdown1" class="dropdown-content">
+              <li class="divider"></li>
+                <li><%= link_to 'ログイン', new_user_session_path %></li>
+                <li><%= link_to 'Twitterでログイン', root_path %></li>
+                <li><%= link_to '新規登録', new_user_registration_path %></li>
+            </ul>
+          <% end %>
         </ul>
       </div>
     </nav>
 
     <main>
-      <!-- ログイン状況による分岐まで仮設置 -->
-      <% if user_signed_in? %>
-        ログイン中
-      <% end %>
       <%= yield %>
     </main>
 
