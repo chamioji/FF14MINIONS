@@ -45,5 +45,23 @@ main {
 }
 
 .pagination {
-  text-align: center
+  text-align: center;
+}
+
+.user__profile--button {
+  display:flex;
+  flex-direction: row-reverse;
+}
+
+.user__profile--name {
+  background-color: black;
+}
+
+.user__minion-sort--list {
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.user__minion-sort--image {
+  margin: 6px;
 }

@@ -1,0 +1,84 @@
+<div class="body">
+  <div class="container">
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content__title z-depth-1">
+          <strong>マイページ</strong>
+        </div>
+        <div class="content__body z-depth-1">
+          <%= image_tag ENV["CHARACTER_IMAGE_URL"], class: "header__character-image" %>
+          キャラクター名(サーバー名) <div class="chip">RANK: #1</div>
+          <a class="waves-effect waves-light btn">ツイートする</a>
+          <a class="waves-effect waves-light btn">編集する</a>
+          <a class="waves-effect waves-light btn">退会する</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content__title z-depth-1">
+          <strong>ミニオン取得数</strong>
+        </div>
+        <div class="content__body z-depth-1">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <div class="content__title z-depth-1">
+          <strong>カテゴリー</strong>
+        </div>
+        <div class="content__body z-depth-1">
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="content__title z-depth-1">
+          <strong>カテゴリー</strong>
+        </div>
+        <div class="content__body z-depth-1">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <div class="content__title z-depth-1">
+          <strong>お気に入り</strong>
+        </div>
+        <div class="content__body z-depth-1">
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="content__title z-depth-1">
+          <strong>次のおすすめ</strong>
+        </div>
+        <div class="content__body z-depth-1">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content__title z-depth-1">
+          <strong>ミニオン</strong>
+        </div>
+        <div class="content__body z-depth-1">
+          <div class="">
+            <div class="chip">TOTAL: 367</div>
+          </div>
+          <div class="user__minion-sort--list">
+            <% @minions.each do |minion| %>
+              <div class="user__minion-sort--image">
+                <%= image_tag "#{minion.image_url}" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

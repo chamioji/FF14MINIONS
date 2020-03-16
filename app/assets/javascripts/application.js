@@ -15,7 +15,3 @@
 //= require jquery
 //= require materialize
 //= require_tree .
-
-$( document ).ready(function () {
-  $(".dropdown-trigger").dropdown();
-});

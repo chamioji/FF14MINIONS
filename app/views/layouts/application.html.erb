@@ -29,7 +29,13 @@
           <!-- ドロップダウンの内容 -->
           <ul id="dropdown1" class="dropdown-content">
             <li class="divider"></li>
-            <li><%= link_to 'マイページ', root_path %></li>
+
+            <!-- ログイン状況による分岐まで仮設置 -->
+            <% if user_signed_in? %>
+             <li><%= link_to 'マイページ', user_path(current_user) %></li>
+            <% end %>
+
+
             <li><%= link_to 'Lodestone', root_path %></li>
             <li class="divider"></li>
             <!-- ログイン状況による分岐まで仮設置 -->
@@ -64,5 +70,11 @@
     </footer>
 
   </body>
+
+  <script>
+    $( document ).ready(function () {
+      $(".dropdown-trigger").dropdown();
+    });
+  </script>
 
 </html>
