@@ -3,38 +3,39 @@
     <div class="row">
 
       <div class="col s12">
-        <div class="content__title z-depth-1">
-          <strong>ミニオン</strong>
-        </div>
-        <div class="content__body z-depth-1">
-          <table>
-            <thead>
-              <tr>
-                <td></td>
-                <td>ミニオン名</td>
-                <td>カテゴリー</td>
-                <td></td>
-                <td>ユーザー取得率</td>
-              </tr>
-            </thead>
-            <tbody>
-              <% @minions.each do |minion| %>
+        <div class="card hoverable z-depth-1">
+          <div class="card-label">ミニオン</div>
+          <div class="card-content">
+            <table>
+              <thead>
                 <tr>
-                  <td><%= image_tag "#{minion.image_url}" %></td>
-                  <td><%= minion.name %></td>
-                  <td><%= minion.category.name %></td>
-                  <td>
-                    <button class="btn">お気に入り</button>
-                  </td>
-                  <td>
-                    <div class="chip">取得済</div>
-                    <div><strong><!-- 取得率 -->%</strong></div>
-                  </td>
+                  <th></th>
+                  <th>ミニオン名</th>
+                  <th>カテゴリー</th>
+                  <th></th>
+                  <th></th>
+                  <th>ユーザー取得率</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <%= paginate @minions %>
+              </thead>
+              <tbody>
+                <% @minions.each do |minion| %>
+                  <tr>
+                    <td><%= image_tag "#{minion.image_url}" %></td>
+                    <td><%= minion.name %></td>
+                    <td><%= minion.category.name %></td>
+                    <td>
+                      <div class="valign-wrapper"><i class="material-icons">favorite_border</i></div>
+                    </td>
+                    <td><div class="chip">取得済</div></td>
+                    <td class="right-align"><!-- 取得率 -->%</td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <div class="center">
+              <%= paginate @minions %>
+            </div>
+          </div>
         </div>
       </div>
 

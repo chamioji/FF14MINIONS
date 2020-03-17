@@ -5,27 +5,28 @@
 
       <div class="row">
         <div class="col s12">
-          <div class="content__title z-depth-1">
-            <strong>キャラクター</strong>
-          </div>
-          <div class="content__body z-depth-1">
-            <% if @user == current_user %>
-              <%= form_with url: {:controller => :users, :action => :import}, data: {remote: false} do |f| %>
-                <div class="input-field">
-                  <i class="material-icons prefix">import_contacts</i>
-                  <%= f.text_field :url %>
-                  <%= f.label :"url", "https://jp.finalfantasyxiv.com/lodestone/character/○○○○○○○○/" %>
-                  <span class="helper-text">LodestoneのURLを入力してキャラクターを読み込みましょう</span>
-                </div>
-                <div class="center">
-                  <%= f.button '読み込む', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">キャラクター</div>
+            <div class="card-content">
+              <% if @user == current_user %>
+                <%= form_with url: {:controller => :users, :action => :import}, data: {remote: false} do |f| %>
+                  <div class="input-field">
+                    <i class="material-icons prefix">import_contacts</i>
+                    <%= f.text_field :url %>
+                    <%= f.label :"url", "https://jp.finalfantasyxiv.com/lodestone/character/○○○○○○○○/" %>
+                    <span class="helper-text">LodestoneのURLを入力してキャラクターを読み込みましょう</span>
+                  </div>
+                  <div class="center">
+                    <%= f.button '読み込む', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="valign-wrapper">
+                  <%= image_tag "no_image.png", class: "character-image-lg" %>
+                  <div class="valign-wrapper"><i class="material-icons">person</i>キャラクターが読み込まれていません</div>
                 </div>
               <% end %>
-            <% else %>
-              <div class="center">
-                キャラクターが読み込まれていません
-              </div>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>
@@ -34,86 +35,85 @@
 
       <div class="row">
         <div class="col s12">
-          <div class="content__title z-depth-1">
-            <strong>キャラクター</strong>
-          </div>
-          <div class="content__body z-depth-1">
-            <div class="user__profile--data">
-              <%= image_tag @user.image_url, class: "header__character-image" %>
-              <i class="material-icons">person</i><%= @user.name %>
-              <i class="material-icons">place</i><%= @user.server %>
-              <i class="material-icons">star</i>RANK: #1
-              <i class="material-icons">import_contacts</i><%= link_to "Lodestone", @user.url, target: :_blank %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s12">
-          <div class="content__title z-depth-1">
-            <strong>ミニオン取得数</strong>
-          </div>
-          <div class="content__body z-depth-1">
-            <div class="user__profile--button">
-              <% if @user == current_user %>
-                <%= link_to "同期", {controller: 'users', action: 'sync'}, method: :post, class: "btn waves-effect waves-light" %>
-                <a class="waves-effect waves-light btn">ツイートする</a>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s6">
-          <div class="content__title z-depth-1">
-            <strong>カテゴリー</strong>
-          </div>
-          <div class="content__body z-depth-1">
-          </div>
-        </div>
-        <div class="col s6">
-          <div class="content__title z-depth-1">
-            <strong>カテゴリー</strong>
-          </div>
-          <div class="content__body z-depth-1">
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s6">
-          <div class="content__title z-depth-1">
-            <strong>お気に入り</strong>
-          </div>
-          <div class="content__body z-depth-1">
-          </div>
-        </div>
-        <div class="col s6">
-          <div class="content__title z-depth-1">
-            <strong>おすすめ</strong>
-          </div>
-          <div class="content__body z-depth-1">
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s12">
-          <div class="content__title z-depth-1">
-            <strong>ミニオン</strong>
-          </div>
-          <div class="content__body z-depth-1">
-            <div class="">
-              <div class="chip">TOTAL: 367</div>
-            </div>
-            <div class="user__minion-sort--list">
-              <% @minions.each do |minion| %>
-                <div class="user__minion-sort--image">
-                  <%= image_tag "#{minion.image_url}" %>
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">キャラクター</div>
+            <div class="card-content">
+              <div class="valign-wrapper">
+                <%= image_tag @user.image_url, class: "character-image-lg" %>
+                <div>
+                  <div class="valign-wrapper"><i class="material-icons">person</i><%= @user.name %></div>
+                  <div class="valign-wrapper"><i class="material-icons">place</i><%= @user.server %></div>
+                  <div class="valign-wrapper"><i class="material-icons">star</i>RANK: #1</div>
+                  <div class="valign-wrapper">
+                    <i class="material-icons">import_contacts</i><%= link_to "Lodestone", @user.url, target: :_blank %>
+                  </div>
                 </div>
-              <% end %>
+              </div>
+            </div>
+            <% if @user == current_user %>
+              <div class="card-action valign-wrapper">
+                <i class="material-icons">sync</i><%= link_to "同期", {controller: 'users', action: 'sync'}, method: :post %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">ミニオン取得数</div>
+            <div class="card-content">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s6">
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">カテゴリー</div>
+            <div class="card-content">
+            </div>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">カテゴリー</div>
+            <div class="card-content">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s6">
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">お気に入り</div>
+            <div class="card-content">
+            </div>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">おすすめ</div>
+            <div class="card-content">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">キャラクター</div>
+            <div class="card-content">
+              <div class="chip">TOTAL: 367</div>
+              <div>
+                <% @minions.each do |minion| %>
+                  <%= image_tag "#{minion.image_url}", class: "minion-image-sm" %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -123,5 +123,3 @@
 
   </div>
 </div>
-
-

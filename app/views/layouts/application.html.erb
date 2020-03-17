@@ -14,59 +14,89 @@
     <nav>
       <div class="nav-wrapper">
         <%= link_to 'FF14MINIONS', root_path, class: "brand-logo" %>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+
           <% if user_signed_in? %>
-            <li><%= link_to 'このサイトについて', about_path %></li>
-            <li><%= link_to 'ミニオン', minions_path %></li>
-            <li><%= link_to 'ランキング', root_path %></li>
-            <li>
-              <% if current_user.url == nil %>
-                <%= image_tag "no_image.png", class: "header__character-image" %>
-              <% else %>
-                <%= image_tag current_user.image_url, class: "header__character-image" %>
-              <% end %>
-            </li>
-            <!-- ドロップダウンのトリガー -->
-            <li>
-              <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-                <% if current_user.url == nil %>
-                  キャラクターが読み込まれていません
-                <% else %>
-                  <%= current_user.name %>
-                <% end %>
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <!-- ドロップダウンの内容 -->
-            <ul id="dropdown1" class="dropdown-content">
-              <li class="divider"></li>
-                <li><%= link_to 'キャラクター', user_path(current_user) %></li>
-                <li><%= link_to 'アカウント', root_path %></li>
-                <li class="divider"></li>
-                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-              </ul>
+            <!-- サイドバーのトリガー -->
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><%= link_to 'このサイトについて', about_path %></li>
+              <li><%= link_to 'ミニオン', minions_path %></li>
+              <li><%= link_to 'ランキング', root_path %></li>
+              <li>
+                <!-- ドロップダウンのトリガー -->
+                <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
+                  <% if current_user.url == nil %>
+                    <%= image_tag "no_image.png", class: "character-image-sm" %>
+                    キャラクターが読み込まれていません
+                  <% else %>
+                    <%= image_tag current_user.image_url, class: "character-image-sm" %>
+                    <%= current_user.name %>
+                  <% end %>
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
             </ul>
           <% else %>
-            <li><%= link_to 'このサイトについて', about_path %></li>
-            <li><%= image_tag "no_image.png", class: "header__character-image" %></li>
-            <!-- ドロップダウンのトリガー -->
-            <li>
-              <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-                ログインしてください
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <!-- ドロップダウンの内容 -->
-            <ul id="dropdown1" class="dropdown-content">
-              <li class="divider"></li>
-                <li><%= link_to 'ログイン', new_user_session_path %></li>
-                <li><%= link_to 'Twitterでログイン', root_path %></li>
-                <li><%= link_to '新規登録', new_user_registration_path %></li>
+            <!-- サイドバーのトリガー -->
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><%= link_to 'このサイトについて', about_path %></li>
+              <li>
+                <!-- ドロップダウンのトリガー -->
+                <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
+                  <%= image_tag "no_image.png", class: "character-image-sm" %>
+                  ログインしてください
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
             </ul>
           <% end %>
+
         </ul>
       </div>
     </nav>
+
+    <!-- サイドバーの内容 -->
+    <ul class="sidenav" id="mobile-demo">
+
+      <% if user_signed_in? %>
+        <li><%= link_to 'このサイトについて', about_path %></li>
+        <li><%= link_to 'ミニオン', minions_path %></li>
+        <li><%= link_to 'ランキング', root_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to 'キャラクター', user_path(current_user) %></li>
+        <li><%= link_to 'アカウント', root_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'このサイトについて', about_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <li><%= link_to 'Twitterでログイン', root_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to '新規登録', new_user_registration_path %></li>
+      <% end %>
+
+    </ul>
+
+    <!-- ドロップダウンの内容 -->
+    <ul id="dropdown1" class="dropdown-content">
+
+      <% if user_signed_in? %>
+        <li><%= link_to 'キャラクター', user_path(current_user) %></li>
+        <li><%= link_to 'アカウント', root_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <li><%= link_to 'Twitterでログイン', root_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to '新規登録', new_user_registration_path %></li>
+      <% end %>
+
+    </ul>
 
     <main>
       <%= yield %>
@@ -74,13 +104,8 @@
 
     <footer class="page-footer">
       <div class="container">
-        <h5 class="white-text">FF14MINIONS</h5>
-        <p class="white-text">Final Fantsy XIVのコレクション要素"ミニオン"の取得状況ランキングサイトです。</p>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          <p class="white-text">Copyright (C) 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</p>
-        </div>
+        <p>記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。</p>
+        <p>Copyright (C) 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</p>
       </div>
     </footer>
 
@@ -89,6 +114,7 @@
   <script>
     $( document ).ready(function () {
       $(".dropdown-trigger").dropdown();
+      $('.sidenav').sidenav();
     });
   </script>
 
