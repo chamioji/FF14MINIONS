@@ -52,7 +52,7 @@
             </div>
             <% if @user == current_user %>
               <div class="card-action valign-wrapper">
-                <i class="material-icons">sync</i><%= link_to "同期", {controller: 'users', action: 'sync'}, method: :post %>
+                <i class="material-icons">sync</i><%= link_to "同期", {controller: 'users', action: 'import'}, method: :post %>
               </div>
             <% end %>
           </div>
@@ -106,12 +106,16 @@
       <div class="row">
         <div class="col s12">
           <div class="card hoverable z-depth-1">
-            <div class="card-label">キャラクター</div>
+            <div class="card-label">ミニオン</div>
             <div class="card-content">
-              <div class="chip">TOTAL: 367</div>
+              <div class="chip">TOTAL: <%= @user.user_minions.count %></div>
               <div>
                 <% @minions.each do |minion| %>
-                  <%= image_tag "#{minion.image_url}", class: "minion-image-sm" %>
+                  <% if minion.owned_by?(@user) %>
+                    <%= image_tag "#{minion.image_url}", class: "minion-image-sm"%>
+                  <% else %>
+                    <%= image_tag "#{minion.image_url}", class: "minion-image-sm", style: "opacity: 0.2" %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
