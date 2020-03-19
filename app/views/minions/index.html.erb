@@ -6,14 +6,13 @@
         <div class="card hoverable z-depth-1">
           <div class="card-label">ミニオン</div>
           <div class="card-content">
-            <table>
+            <table class="centered">
               <thead>
                 <tr>
                   <th></th>
                   <th>ミニオン名</th>
                   <th>カテゴリー</th>
-                  <th></th>
-                  <th></th>
+                  <th>取得済み</th>
                   <th>ユーザー取得率</th>
                 </tr>
               </thead>
@@ -24,10 +23,11 @@
                     <td><%= minion.name %></td>
                     <td><%= minion.category.name %></td>
                     <td>
-                      <div class="valign-wrapper"><i class="material-icons">favorite_border</i></div>
+                      <% if minion.owned_by?(current_user) %>
+                        <i class="material-icons">check</i>
+                      <% end %>
                     </td>
-                    <td><div class="chip">取得済</div></td>
-                    <td class="right-align"><!-- 取得率 -->%</td>
+                    <td><%= (minion.user_minions.count / User.count.to_f * 100).round(1) %>%</td>
                   </tr>
                 <% end %>
               </tbody>
