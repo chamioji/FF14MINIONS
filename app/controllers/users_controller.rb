@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 
 
+  def index
+    @users = User.where.not(url: nil).page(params[:page]).per(50)
+  end
+
+
   def show
 
     @user = User.find(params[:id])
@@ -73,5 +78,6 @@ class UsersController < ApplicationController
     redirect_to user_path(user)
 
   end
+
 
 end

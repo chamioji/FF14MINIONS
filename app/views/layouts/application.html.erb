@@ -20,6 +20,7 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><%= link_to 'このサイトについて', about_path %></li>
+              <li><%= link_to 'キャラクター', users_path %></li>
               <li><%= link_to 'ミニオン', minions_path %></li>
               <li><%= link_to 'ランキング', root_path %></li>
               <li>
@@ -63,10 +64,11 @@
 
       <% if user_signed_in? %>
         <li><%= link_to 'このサイトについて', about_path %></li>
+        <li><%= link_to 'キャラクター', users_path %></li>
         <li><%= link_to 'ミニオン', minions_path %></li>
         <li><%= link_to 'ランキング', root_path %></li>
         <li class="divider"></li>
-        <li><%= link_to 'キャラクター', user_path(current_user) %></li>
+        <li><%= link_to 'マイキャラクター', user_path(current_user) %></li>
         <li><%= link_to 'アカウント', root_path %></li>
         <li class="divider"></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
@@ -85,7 +87,7 @@
     <ul id="dropdown1" class="dropdown-content">
 
       <% if user_signed_in? %>
-        <li><%= link_to 'キャラクター', user_path(current_user) %></li>
+        <li><%= link_to 'マイキャラクター', user_path(current_user) %></li>
         <li><%= link_to 'アカウント', root_path %></li>
         <li class="divider"></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
