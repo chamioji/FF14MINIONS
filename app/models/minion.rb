@@ -1,6 +1,7 @@
 class Minion < ApplicationRecord
 
   has_many :user_minions
+  has_many :users, through: :user_minions
 
   belongs_to :category
 

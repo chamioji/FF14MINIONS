@@ -1,9 +1,25 @@
 class UsersController < ApplicationController
 
+
   def show
+
     @user = User.find(params[:id])
     @minions = Minion.all
+
+    @possession_rate = ["取得済み", @user.user_minions.count], ["未取得", @minions.count - @user.user_minions.count]
+
+    @component_rate = {}
+    Category.all.map do |category|
+      @component_rate.store(category.name, @minions.joins(:users).where(users:{id: @user.id}, category_id: category.id).count)
+    end
+
+    @complete_rate = {}
+    Category.all.map do |category|
+      @complete_rate.store(category.name, (@minions.joins(:users).where(users:{id: @user.id}, category_id: category.id).count / @minions.where(category_id: category.id).count.to_f * 100).round(1))
+    end
+
   end
+
 
   def import
 

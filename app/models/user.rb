@@ -7,5 +7,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :user_minions
+  has_many :minions, through: :user_minions
 
 end

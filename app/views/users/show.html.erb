@@ -41,10 +41,10 @@
               <div class="valign-wrapper">
                 <%= image_tag @user.image_url, class: "character-image-lg" %>
                 <div>
-                  <div class="valign-wrapper"><i class="material-icons">person</i><%= @user.name %></div>
-                  <div class="valign-wrapper"><i class="material-icons">place</i><%= @user.server %></div>
-                  <div class="valign-wrapper"><i class="material-icons">star</i>RANK: #1</div>
-                  <div class="valign-wrapper">
+                  <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= @user.name %></div>
+                  <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= @user.server %></div>
+                  <div class="valign-wrapper character-prof"><i class="material-icons">star</i>RANK: #1</div>
+                  <div class="valign-wrapper character-prof">
                     <i class="material-icons">import_contacts</i><%= link_to "Lodestone", @user.url, target: :_blank %>
                   </div>
                 </div>
@@ -62,42 +62,19 @@
       <div class="row">
         <div class="col s12">
           <div class="card hoverable z-depth-1">
-            <div class="card-label">ミニオン取得数</div>
+            <div class="card-label">ミニオン取得率</div>
             <div class="card-content">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s6">
-          <div class="card hoverable z-depth-1">
-            <div class="card-label">カテゴリー</div>
-            <div class="card-content">
-            </div>
-          </div>
-        </div>
-        <div class="col s6">
-          <div class="card hoverable z-depth-1">
-            <div class="card-label">カテゴリー</div>
-            <div class="card-content">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s6">
-          <div class="card hoverable z-depth-1">
-            <div class="card-label">お気に入り</div>
-            <div class="card-content">
-            </div>
-          </div>
-        </div>
-        <div class="col s6">
-          <div class="card hoverable z-depth-1">
-            <div class="card-label">おすすめ</div>
-            <div class="card-content">
+              <div class="valign-wrapper">
+                <span class="rate-title-lg" style="margin-left: auto;">
+                  <%= @user.user_minions.count %>
+                </span>
+                <span class="rate-title-sm">
+                  /<%= @minions.count %>(<%= (@user.user_minions.count / @minions.count.to_f * 100).round(1) %>%)
+                </span>
+                <div style="margin-right: auto;">
+                  <%= pie_chart @possession_rate, suffix: "個", width: "300px" %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -108,16 +85,37 @@
           <div class="card hoverable z-depth-1">
             <div class="card-label">ミニオン</div>
             <div class="card-content">
-              <div class="chip">TOTAL: <%= @user.user_minions.count %></div>
               <div>
                 <% @minions.each do |minion| %>
                   <% if minion.owned_by?(@user) %>
-                    <%= image_tag "#{minion.image_url}", class: "minion-image-sm"%>
+                      <%= image_tag "#{minion.image_url}", class: "minion-image-sm"%>
                   <% else %>
                     <%= image_tag "#{minion.image_url}", class: "minion-image-sm", style: "opacity: 0.2" %>
                   <% end %>
                 <% end %>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">カテゴリー 構成比率</div>
+            <div class="card-content">
+              <%= pie_chart @component_rate, suffix: "個" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card hoverable z-depth-1">
+            <div class="card-label">カテゴリー コンプリート率</div>
+            <div class="card-content">
+              <%= bar_chart @complete_rate, min: 0, max: 100, suffix: "%" %>
             </div>
           </div>
         </div>
