@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post 'users/:id/import' => 'users#import'
   resources :minions, only: [:index]
   resources :rankings, only: [:index]
+  resources :searchs, only: [:index]
 
 end

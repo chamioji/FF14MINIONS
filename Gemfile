@@ -70,6 +70,7 @@ gem 'kaminari'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
 gem 'nokogiri'
+gem 'ransack'
 
 group :production do
   gem 'mysql2'

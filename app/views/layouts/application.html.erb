@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
   <head>
     <title>FF14MINIONS</title>
     <%= csrf_meta_tags %>
@@ -9,60 +10,83 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
+
 
     <nav>
       <div class="nav-wrapper">
         <%= link_to 'FF14MINIONS', root_path, class: "brand-logo" %>
 
-          <% if user_signed_in? %>
-            <!-- サイドバーのトリガー -->
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><%= link_to 'このサイトについて', about_path %></li>
-              <li><%= link_to 'キャラクター', users_path %></li>
-              <li><%= link_to 'ミニオン', minions_path %></li>
-              <li><%= link_to 'ランキング', rankings_path %></li>
-              <li>
-                <!-- ドロップダウンのトリガー -->
-                <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
-                  <% if current_user.url == nil %>
-                    <%= image_tag "no_image.png", class: "character-image-sm" %>
-                    キャラクターが読み込まれていません
-                  <% else %>
-                    <%= image_tag current_user.image_url, class: "character-image-sm" %>
-                    <%= current_user.name %>
-                  <% end %>
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
-            </ul>
-          <% else %>
-            <!-- サイドバーのトリガー -->
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-              <i class="material-icons">menu</i>
-            </a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><%= link_to 'このサイトについて', about_path %></li>
-              <li>
-                <!-- ドロップダウンのトリガー -->
-                <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
-                  <%= image_tag "no_image.png", class: "character-image-sm" %>
-                  ログインしてください
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
-            </ul>
-          <% end %>
 
-        </ul>
+        <% if user_signed_in? %>
+
+          <!-- サイドバーのトリガー -->
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+              <%= link_to searchs_path do %>
+                <i class="material-icons prefix">search</i>
+              <% end %>
+            </li>
+            <li><%= link_to 'このサイトについて', about_path %></li>
+            <li><%= link_to 'キャラクター', users_path %></li>
+            <li><%= link_to 'ミニオン', minions_path %></li>
+            <li><%= link_to 'ランキング', rankings_path %></li>
+            <li>
+              <!-- ドロップダウンのトリガー -->
+              <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
+                <% if current_user.url == nil %>
+                  <%= image_tag "no_image.png", class: "character-image-sm" %>
+                  キャラクターが読み込まれていません
+                <% else %>
+                  <%= image_tag current_user.image_url, class: "character-image-sm" %>
+                  <%= current_user.name %>
+                <% end %>
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+          </ul>
+          <ul id="nav-mobile" class="right show-on-medium-and-down hide-on-med-and-up">
+            <li>
+              <%= link_to searchs_path do %>
+                <i class="material-icons">search</i>
+              <% end %>
+            </li>
+          </ul>
+
+        <% else %>
+
+          <!-- サイドバーのトリガー -->
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><%= link_to 'このサイトについて', about_path %></li>
+            <li>
+              <!-- ドロップダウンのトリガー -->
+              <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
+                <%= image_tag "no_image.png", class: "character-image-sm" %>
+                ログインしてください
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+          </ul>
+
+        <% end %>
+
+
       </div>
     </nav>
+
+
 
     <!-- サイドバーの内容 -->
     <ul class="sidenav" id="mobile-demo">
 
+
       <% if user_signed_in? %>
+
         <li><%= link_to 'このサイトについて', about_path %></li>
         <li><%= link_to 'キャラクター', users_path %></li>
         <li><%= link_to 'ミニオン', minions_path %></li>
@@ -72,37 +96,50 @@
         <li><%= link_to 'アカウント', root_path %></li>
         <li class="divider"></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+
       <% else %>
+
         <li><%= link_to 'このサイトについて', about_path %></li>
         <li class="divider"></li>
         <li><%= link_to 'ログイン', new_user_session_path %></li>
         <li><%= link_to 'Twitterでログイン', root_path %></li>
         <li class="divider"></li>
         <li><%= link_to '新規登録', new_user_registration_path %></li>
+
       <% end %>
 
+
     </ul>
+
 
     <!-- ドロップダウンの内容 -->
     <ul id="dropdown1" class="dropdown-content">
 
+
       <% if user_signed_in? %>
+
         <li><%= link_to 'マイキャラクター', user_path(current_user) %></li>
         <li><%= link_to 'アカウント', root_path %></li>
         <li class="divider"></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+
       <% else %>
+
         <li><%= link_to 'ログイン', new_user_session_path %></li>
         <li><%= link_to 'Twitterでログイン', root_path %></li>
         <li class="divider"></li>
         <li><%= link_to '新規登録', new_user_registration_path %></li>
+
       <% end %>
 
+
     </ul>
+
 
     <main>
       <%= yield %>
     </main>
+
 
     <footer class="page-footer">
       <div class="container">
@@ -111,7 +148,9 @@
       </div>
     </footer>
 
+
   </body>
+
 
   <script>
     $( document ).ready(function () {
@@ -120,5 +159,6 @@
       $('ul.tabs').tabs();
     });
   </script>
+
 
 </html>
