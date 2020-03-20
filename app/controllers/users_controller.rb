@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.where.not(url: nil).page(params[:page]).per(50)
+    @users = User.where.not(url: nil).page(params[:page]).per(30)
   end
 
 

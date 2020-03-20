@@ -22,7 +22,7 @@
               <li><%= link_to 'このサイトについて', about_path %></li>
               <li><%= link_to 'キャラクター', users_path %></li>
               <li><%= link_to 'ミニオン', minions_path %></li>
-              <li><%= link_to 'ランキング', root_path %></li>
+              <li><%= link_to 'ランキング', rankings_path %></li>
               <li>
                 <!-- ドロップダウンのトリガー -->
                 <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
@@ -66,7 +66,7 @@
         <li><%= link_to 'このサイトについて', about_path %></li>
         <li><%= link_to 'キャラクター', users_path %></li>
         <li><%= link_to 'ミニオン', minions_path %></li>
-        <li><%= link_to 'ランキング', root_path %></li>
+        <li><%= link_to 'ランキング', rankings_path %></li>
         <li class="divider"></li>
         <li><%= link_to 'マイキャラクター', user_path(current_user) %></li>
         <li><%= link_to 'アカウント', root_path %></li>
@@ -117,6 +117,7 @@
     $( document ).ready(function () {
       $(".dropdown-trigger").dropdown();
       $('.sidenav').sidenav();
+      $('ul.tabs').tabs();
     });
   </script>
 
