@@ -1,0 +1,108 @@
+<div class="container">
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card hoverable z-depth-1">
+        <div class="card-label">キャラクター</div>
+        <div class="card-content">
+          <div class="valign-wrapper">
+            <%= image_tag @character.image_url, class: "character-image-lg" %>
+            <div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= @character.name %></div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= @character.world %></div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">star</i>RANK: #1</div>
+              <div class="valign-wrapper character-prof">
+                <i class="material-icons">import_contacts</i><%= link_to "Lodestone", "https://jp.finalfantasyxiv.com/lodestone/character/" + @character.id.to_s + "/", target: :_blank %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-action valign-wrapper">
+          <i class="material-icons">sync</i><%= link_to "同期", {controller: 'characters', action: 'sync'}, method: :post %>
+        </div>
+
+        <% if user_signed_in? %>
+
+          <% if @character != current_character %>
+            <div class="card-action valign-wrapper">
+              <i class="material-icons">account_circle</i><%= link_to "マイキャラクターに設定", {controller: 'characters', action: 'set_current_character'}, method: :post %>
+            </div>
+          <% end %>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card hoverable z-depth-1">
+        <div class="card-label">ミニオン取得率</div>
+        <div class="card-content">
+          <div class="valign-wrapper">
+            <span class="rate-title-lg" style="margin-left: auto;">
+              <%= @character.character_minions.count %>
+            </span>
+            <span class="rate-title-sm">
+              /<%= @minions.count %>(<%= (@character.character_minions.count / @minions.count.to_f * 100).round(1) %>%)
+            </span>
+            <div style="margin-right: auto;">
+              <%= pie_chart @possession_rate, suffix: "個", width: "300px" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card hoverable z-depth-1">
+        <div class="card-label">ミニオン</div>
+        <div class="card-content">
+          <div>
+
+            <% @minions.each do |minion| %>
+              <% if minion.owned_by?(@character) %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image-sm"%>
+              <% else %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image-sm", style: "opacity: 0.2" %>
+              <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card hoverable z-depth-1">
+        <div class="card-label">カテゴリー 構成比率</div>
+        <div class="card-content">
+          <%= pie_chart @component_rate, suffix: "個" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card hoverable z-depth-1">
+        <div class="card-label">カテゴリー コンプリート率</div>
+        <div class="card-content">
+          <%= bar_chart @complete_rate, min: 0, max: 100, suffix: "%" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

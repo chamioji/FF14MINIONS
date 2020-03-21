@@ -1,7 +1,8 @@
 class MinionsController < ApplicationController
 
   def index
-    @minions = Minion.page(params[:page]).per(30)
+    q = params[:q]
+    @minions = Minion.search(name_cont: q).result.page(params[:page]).per(30)
   end
 
 end

@@ -18,63 +18,51 @@
       <div class="nav-wrapper">
         <%= link_to 'FF14MINIONS', root_path, class: "brand-logo" %>
 
-
-        <% if user_signed_in? %>
-
-          <!-- サイドバーのトリガー -->
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
-              <%= link_to searchs_path do %>
+              <%= link_to characters_path do %>
                 <i class="material-icons prefix">search</i>
               <% end %>
             </li>
             <li><%= link_to 'このサイトについて', about_path %></li>
-            <li><%= link_to 'キャラクター', users_path %></li>
             <li><%= link_to 'ミニオン', minions_path %></li>
             <li><%= link_to 'ランキング', rankings_path %></li>
             <li>
               <!-- ドロップダウンのトリガー -->
               <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
-                <% if current_user.lodestone_id == nil %>
-                  <%= image_tag "no_image.png", class: "character-image-sm" %>
-                  キャラクターが読み込まれていません
+
+                <% if user_signed_in? %>
+
+                  <% if current_user.current_character_id.present? %>
+                    <%= image_tag "#{current_character.image_url}", class: "character-image-sm" %>
+                    <%= current_character.name %>
+                  <% else %>
+                    <%= image_tag "no_image.png", class: "character-image-sm" %>
+                    マイキャラクターを選択していません
+                  <% end %>
+
                 <% else %>
-                  <%= image_tag current_user.image_url, class: "character-image-sm" %>
-                  <%= current_user.name %>
+
+                  <%= image_tag "no_image.png", class: "character-image-sm" %>
+                  ログインしてください
+
                 <% end %>
+
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
           </ul>
+
+          <!-- サイドバーのトリガー -->
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
           <ul id="nav-mobile" class="right show-on-medium-and-down hide-on-med-and-up">
             <li>
-              <%= link_to searchs_path do %>
+              <%= link_to characters_path do %>
                 <i class="material-icons">search</i>
               <% end %>
             </li>
           </ul>
-
-        <% else %>
-
-          <!-- サイドバーのトリガー -->
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-            <i class="material-icons">menu</i>
-          </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><%= link_to 'このサイトについて', about_path %></li>
-            <li>
-              <!-- ドロップダウンのトリガー -->
-              <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
-                <%= image_tag "no_image.png", class: "character-image-sm" %>
-                ログインしてください
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-          </ul>
-
-        <% end %>
-
 
       </div>
     </nav>
@@ -84,30 +72,30 @@
     <!-- サイドバーの内容 -->
     <ul class="sidenav" id="mobile-demo">
 
-
-      <% if user_signed_in? %>
-
         <li><%= link_to 'このサイトについて', about_path %></li>
-        <li><%= link_to 'キャラクター', users_path %></li>
         <li><%= link_to 'ミニオン', minions_path %></li>
         <li><%= link_to 'ランキング', rankings_path %></li>
         <li class="divider"></li>
-        <li><%= link_to 'マイキャラクター', user_path(current_user) %></li>
-        <li><%= link_to 'アカウント', root_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
 
-      <% else %>
+        <% if user_signed_in? %>
 
-        <li><%= link_to 'このサイトについて', about_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <li><%= link_to 'Twitterでログイン', root_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to '新規登録', new_user_registration_path %></li>
+          <% if current_user.current_character_id.present? %>
+            <li><%= link_to 'マイキャラクター', character_path(current_character) %></li>
+          <% else %>
+            <li><%= link_to 'マイキャラクターを検索', characters_path %></li>
+          <% end %>
+          <li><%= link_to 'アカウント', root_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
 
-      <% end %>
+        <% else %>
 
+          <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <li><%= link_to 'Twitterでログイン', root_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to '新規登録', new_user_registration_path %></li>
+
+        <% end %>
 
     </ul>
 
@@ -115,10 +103,13 @@
     <!-- ドロップダウンの内容 -->
     <ul id="dropdown1" class="dropdown-content">
 
-
       <% if user_signed_in? %>
 
-        <li><%= link_to 'マイキャラクター', user_path(current_user) %></li>
+        <% if current_user.current_character_id.present? %>
+          <li><%= link_to 'マイキャラクター', character_path(current_character) %></li>
+        <% else %>
+          <li><%= link_to 'マイキャラクターを検索', characters_path %></li>
+        <% end %>
         <li><%= link_to 'アカウント', root_path %></li>
         <li class="divider"></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
@@ -131,7 +122,6 @@
         <li><%= link_to '新規登録', new_user_registration_path %></li>
 
       <% end %>
-
 
     </ul>
 
@@ -154,9 +144,17 @@
 
   <script>
     $( document ).ready(function () {
-      $(".dropdown-trigger").dropdown();
+      $('.dropdown-trigger').dropdown();
       $('.sidenav').sidenav();
       $('ul.tabs').tabs();
+      $('a[data-toggle="tab"]').click(function(e) {
+        if (history.replaceState) {
+          history.replaceState(null, null, '#' + $(e.target).attr('href').substr(1));
+        } else {
+          location.hash = '#' + $(e.target).attr('href').substr(1);
+        }
+        $(window).trigger('hashchange');
+      });
     });
   </script>
 

@@ -6,10 +6,12 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [:index, :show]
-  post 'users/:id/import' => 'users#import'
+  resources :characters, only: [:index, :show]
+  post 'characters/import' => 'characters#import'
+  post 'characters/:id/sync' => 'characters#sync'
+  post 'characters/:id/set_current_character' => 'characters#set_current_character'
+  resources :users, only: [:show, :edit]
   resources :minions, only: [:index]
   resources :rankings, only: [:index]
-  resources :searchs, only: [:index]
 
 end
