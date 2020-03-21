@@ -55,7 +55,7 @@
                   <tr>
                     <td><%= image_tag "#{user.image_url}", class: "character-image-sm" %></td>
                     <td><%= link_to user.name, user_path(user) %></td>
-                    <td><%= user.server %></td>
+                    <td><%= user.world %></td>
                     <td><%= user.user_minions.count %></td>
                   </tr>
                 <% end %>

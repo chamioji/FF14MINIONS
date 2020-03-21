@@ -10,7 +10,7 @@ class Minion < ApplicationRecord
   end
 
   def rarity
-    self.user_minions.count / User.where.not(url: nil).count.to_f * 100
+    self.user_minions.count / User.where.not(lodestone_id: nil).count.to_f * 100
   end
 
 end

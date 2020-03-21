@@ -36,7 +36,7 @@
             <li>
               <!-- ドロップダウンのトリガー -->
               <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
-                <% if current_user.url == nil %>
+                <% if current_user.lodestone_id == nil %>
                   <%= image_tag "no_image.png", class: "character-image-sm" %>
                   キャラクターが読み込まれていません
                 <% else %>
