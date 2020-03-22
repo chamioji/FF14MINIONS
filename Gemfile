@@ -70,6 +70,8 @@ gem 'kaminari'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
 gem 'nokogiri'
+gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'ransack'
 
 group :production do

@@ -84,14 +84,18 @@
           <% else %>
             <li><%= link_to 'マイキャラクターを検索', characters_path %></li>
           <% end %>
-          <li><%= link_to 'アカウント', root_path %></li>
+
+          <% if current_user.uid.nil? %>
+            <li><%= link_to 'アカウント', root_path %></li>
+          <% end %>
+
           <li class="divider"></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
 
         <% else %>
 
           <li><%= link_to 'ログイン', new_user_session_path %></li>
-          <li><%= link_to 'Twitterでログイン', root_path %></li>
+          <li><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %></li>
           <li class="divider"></li>
           <li><%= link_to '新規登録', new_user_registration_path %></li>
 
@@ -110,14 +114,18 @@
         <% else %>
           <li><%= link_to 'マイキャラクターを検索', characters_path %></li>
         <% end %>
-        <li><%= link_to 'アカウント', root_path %></li>
+
+        <% if current_user.uid.nil? %>
+          <li><%= link_to 'アカウント', root_path %></li>
+        <% end %>
+
         <li class="divider"></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
 
       <% else %>
 
         <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <li><%= link_to 'Twitterでログイン', root_path %></li>
+        <li><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %></li>
         <li class="divider"></li>
         <li><%= link_to '新規登録', new_user_registration_path %></li>
 

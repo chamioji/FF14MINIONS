@@ -33,6 +33,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       t.integer :current_character_id
+      t.string :provider
+      t.string :uid
 
       t.timestamps null: false
     end

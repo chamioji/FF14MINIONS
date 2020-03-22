@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'home#top'
   get 'about' => 'home#about', as: 'about'
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :characters, only: [:index, :show]
   post 'characters/import' => 'characters#import'
