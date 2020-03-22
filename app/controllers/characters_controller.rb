@@ -149,4 +149,11 @@ class CharactersController < ApplicationController
   end
 
 
+  def reset_current_character
+    current_user.current_character_id = nil
+    current_user.save
+    redirect_back(fallback_location: root_path)
+  end
+
+
 end

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'characters/import' => 'characters#import'
   post 'characters/:id/sync' => 'characters#sync'
   post 'characters/:id/set_current_character' => 'characters#set_current_character'
-  resources :users, only: [:show, :edit]
+  post 'characters/:id/reset_current_character' => 'characters#reset_current_character'
   resources :minions, only: [:index]
   resources :rankings, only: [:index]
 
