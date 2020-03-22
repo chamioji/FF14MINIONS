@@ -21,6 +21,16 @@
         <div class="card-action valign-wrapper">
           <i class="material-icons">sync</i><%= link_to "同期", {controller: 'characters', action: 'sync'}, method: :post %>
         </div>
+        <div class="card-action valign-wrapper">
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+           class="twitter-share-button"
+           data-size="large"
+           data-text="<%= @character.name %> / <%= @character.world %>, ミニオン取得率: <%= @character.character_minions.count %>/<%= @minions.count %>(<%= (@character.character_minions.count / @minions.count.to_f * 100).round(1) %>%)"
+           data-hashtags="FF14MINIONS, FF14"
+           data-related="ff14minions"
+           data-lang="ja"
+           data-show-count="false">ツイート</a>
+        </div>
 
         <% if user_signed_in? %>
 
