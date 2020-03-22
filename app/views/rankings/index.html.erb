@@ -25,7 +25,7 @@
               </thead>
               <tbody>
 
-                <% @ranking_characters.each.with_index(1) do |character, i| %>
+                <% @characters.each.with_index(1) do |character, i| %>
                   <tr>
                     <td><%= i %></td>
                     <td><%= image_tag "#{character.image_url}", class: "character-image-sm" %></td>
@@ -52,7 +52,7 @@
               </thead>
               <tbody>
 
-                <% @ranking_minions.each.with_index(1) do |minion, i| %>
+                <% @minions.each.with_index(1) do |minion, i| %>
                   <tr>
                     <td><%= i %></td>
                     <td><%= image_tag "#{minion.image_url}" %></td>
