@@ -5,4 +5,15 @@ class Character < ApplicationRecord
 
   validates :id, on: :import, uniqueness: true, format: { with: /\A\d{1,8}\z/ } # 1桁から8桁の数字
 
+  def rank
+    characters = Character.find(CharacterMinion.group(:character_id).order('count(character_id) desc').pluck(:character_id))
+    rank = 0
+    characters.each do |character|
+      rank += 1
+      if character.id == self.id
+        return rank
+      end
+    end
+  end
+
 end

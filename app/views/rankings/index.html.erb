@@ -25,9 +25,9 @@
               </thead>
               <tbody>
 
-                <% @characters.each.with_index(1) do |character, i| %>
+                <% @characters.each do |character| %>
                   <tr>
-                    <td><%= i %></td>
+                    <td><%= character.rank %></td>
                     <td><%= image_tag "#{character.image_url}", class: "character-image-sm" %></td>
                     <td><%= link_to character.name, character_path(character) %></td>
                     <td><%= character.world %></td>

@@ -24,15 +24,6 @@ class CharactersController < ApplicationController
       @complete_rate.store(category.name, (@minions.joins(:characters).where(characters:{id: @character.id}, category_id: category.id).count / @minions.where(category_id: category.id).count.to_f * 100).round(1))
     end
 
-    @characters = Character.find(CharacterMinion.group(:character_id).order('count(character_id) desc').pluck(:character_id))
-    @rank = 0
-    @characters.each do |character|
-      @rank += 1
-      if character.id == @character.id
-        return @rank
-      end
-    end
-
   end
 
 
