@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :characters, only: [:index, :show]
+  get 'characters/:id/compare' => 'characters#compare', as: 'compare_character'
   post 'characters/import' => 'characters#import'
   post 'characters/:id/sync' => 'characters#sync'
   post 'characters/:id/set_current_character' => 'characters#set_current_character'

@@ -1,5 +1,7 @@
 class CharactersController < ApplicationController
 
+  before_action :authenticate_current_character!, only: :compare
+
 
   def index
     q = params[:q]
@@ -24,6 +26,12 @@ class CharactersController < ApplicationController
       @complete_rate.store(category.name, (@minions.joins(:characters).where(characters:{id: @character.id}, category_id: category.id).count / @minions.where(category_id: category.id).count.to_f * 100).round(1))
     end
 
+  end
+
+
+  def compare
+    @character = Character.find(params[:id])
+    @minions = Minion.all
   end
 
 
@@ -153,6 +161,14 @@ class CharactersController < ApplicationController
     current_user.save
     redirect_back(fallback_location: root_path)
   end
+
+
+private
+
+
+def authenticate_current_character!
+  redirect_to root_path unless current_user.current_character_id.present?
+end
 
 
 end
