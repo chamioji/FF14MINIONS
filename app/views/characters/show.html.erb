@@ -11,7 +11,7 @@
             <div>
               <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= @character.name %></div>
               <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= @character.world %></div>
-              <div class="valign-wrapper character-prof"><i class="material-icons">star</i>RANK: #<%= @character.rank %></div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">format_list_numbered</i>RANK: #<%= @character.rank %></div>
               <div class="valign-wrapper character-prof">
                 <i class="material-icons">import_contacts</i>
                 <%= link_to "Lodestone", "https://jp.finalfantasyxiv.com/lodestone/character/" + @character.id.to_s + "/", target: :_blank %>

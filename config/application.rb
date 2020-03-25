@@ -21,5 +21,7 @@ module FF14MINIONS
       %Q(#{html_tag}).html_safe
     end
 
+    config.time_zone = 'Tokyo'
+
   end
 end

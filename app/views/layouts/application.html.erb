@@ -98,6 +98,30 @@
 
     <!-- サイドバーの内容 -->
     <ul class="sidenav" id="mobile-demo">
+      <li>
+        <div style="background-color: #3D5A99; padding: 16px 32px 16px 32px;">
+          <div class="valign-wrapper">
+
+            <% if user_signed_in? %>
+
+              <% if current_user.current_character_id.present? %>
+                <%= image_tag "#{current_character.image_url}", class: "character-image-sm" %>
+                <span class="white-text truncate"><%= current_character.name %></span>
+              <% else %>
+                <%= image_tag "no_image.png", class: "character-image-sm" %>
+                <span class="white-text">マイキャラクターを選択していません</span>
+              <% end %>
+
+            <% else %>
+
+              <%= image_tag "no_image.png", class: "character-image-sm" %>
+              <span class="white-text">ログインしてください</span>
+
+            <% end %>
+
+          </div>
+        </div>
+      </li>
 
         <li><%= link_to 'このサイトについて', about_path %></li>
         <li><%= link_to 'ミニオン', minions_path %></li>
