@@ -35,16 +35,16 @@
                 <% if user_signed_in? %>
 
                   <% if current_user.current_character_id.present? %>
-                    <%= image_tag "#{current_character.image_url}", class: "character-image-sm" %>
+                    <%= image_tag "#{current_character.image_url}", class: "circle character-image-sm", width: "50px" %>
                     <%= current_character.name %>
                   <% else %>
-                    <%= image_tag "no_image.png", class: "character-image-sm" %>
+                    <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
                     マイキャラクターを選択していません
                   <% end %>
 
                 <% else %>
 
-                  <%= image_tag "no_image.png", class: "character-image-sm" %>
+                  <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
                   ログインしてください
 
                 <% end %>
@@ -105,16 +105,16 @@
             <% if user_signed_in? %>
 
               <% if current_user.current_character_id.present? %>
-                <%= image_tag "#{current_character.image_url}", class: "character-image-sm" %>
+                <%= image_tag "#{current_character.image_url}", class: "circle character-image-sm", width: "50px" %>
                 <span class="white-text truncate"><%= current_character.name %></span>
               <% else %>
-                <%= image_tag "no_image.png", class: "character-image-sm" %>
+                <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
                 <span class="white-text">マイキャラクターを選択していません</span>
               <% end %>
 
             <% else %>
 
-              <%= image_tag "no_image.png", class: "character-image-sm" %>
+              <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
               <span class="white-text">ログインしてください</span>
 
             <% end %>

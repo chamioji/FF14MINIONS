@@ -59,31 +59,25 @@ th {
 //
 
 .card-label {
-  color: #FFFFFF;
   background-color: $primary-color;
-  padding: 8px 24px;
+  border-radius: 0 0 2px 2px;
+  color: #FFFFFF;
 }
 
 .character-image-lg {
-  border-radius: 50%;
-  height: 70px;
-  margin-right: 15px;
-  width:  70px;
+  margin-right: 34.5px;
 }
 
 .character-image-sm {
-  border-radius: 50%;
-  height: 50px;
   margin-right: 15px;
-  width:  50px;
 }
 
-.character-prof {
+.character-profile {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.minion-image-sm {
+.minion-image {
   margin: 6px;
 }
 

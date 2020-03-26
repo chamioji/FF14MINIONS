@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">このサイトについて</div>
-    <div class="card hoverable z-depth-1 col s12" style="margin-top: 0;">
+    <div class="card z-depth-1 col s12" style="margin-top: 0;">
 
       <div class="card-content col s12">
         <h4 class="center">FF14MINIONS</h4>
@@ -15,12 +15,12 @@
       <div class="card-content col s12">
         <h4 class="center">ミニオンとは</h4>
         <div class="center">
-          <%= image_tag "image1.jpg", class: "circle", width: "90px" %>
-          <%= image_tag "image2.jpg", class: "circle", width: "90px" %>
-          <%= image_tag "image3.jpg", class: "circle", width: "90px" %>
-          <%= image_tag "image4.jpg", class: "circle", width: "90px" %>
-          <%= image_tag "image5.jpg", class: "circle", width: "90px" %>
-          <%= image_tag "image6.jpg", class: "circle", width: "90px" %>
+          <%= image_tag "image1.jpg", class: "circle", width: "80px" %>
+          <%= image_tag "image2.jpg", class: "circle", width: "80px" %>
+          <%= image_tag "image3.jpg", class: "circle", width: "80px" %>
+          <%= image_tag "image4.jpg", class: "circle", width: "80px" %>
+          <%= image_tag "image5.jpg", class: "circle", width: "80px" %>
+          <%= image_tag "image6.jpg", class: "circle", width: "80px" %>
         </div>
         <div class="center">
           ミニオンとは、ゲーム内で連れて歩けるペットのようなものです。一緒にたたかってくれたりステータスが上がる訳ではありませんが、その愛らしい見た目から人気のコレクション要素の一つになっています。そんなミニオンですが、<%= Date.current.strftime('%Y/%m/%d') %>時点で<strong>全<%= Minion.count %>体</strong>ゲーム内に実装されています。ミニオン収集をする上で、まだ持っていないミニオンを簡単に確認できる場があったら便利だなという思いで当サイトを立ち上げました。みなさんのミニオン収集のパートナーとして、ぜひ当サイトをご利用ください。
@@ -40,7 +40,7 @@
           <p>Lodestoneからキャラクターをインポートできます。インポートされたキャラクターは、以降自動的に更新されます。</p>
         </div>
         <div class="col s4 center">
-          <h2 class="blue-text"><i class="material-icons large">format_list_numbered</i></h2>
+          <h2 class="blue-text"><i class="material-icons large">equalizer</i></h2>
           <h5>ランキング</h5>
           <p>インポートされたキャラクターの中からランキングを作成、表示できます。</p>
         </div>
@@ -71,11 +71,11 @@
 
   <div class="row">
     <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">Twitterアカウント</div>
-    <div class="card hoverable z-depth-1 col s12" style="margin-top: 0;">
+    <div class="card z-depth-1 col s12" style="margin-top: 0;">
       <div class="card-content col s12">
         <div class="valign-wrapper">
           <div>
-            <%= image_tag "https://pbs.twimg.com/profile_images/1241678805325889539/ixmLxb5o_200x200.png", class: "circle", width: "90px" %>
+            <%= image_tag "https://pbs.twimg.com/profile_images/1241678805325889539/ixmLxb5o_200x200.png", class: "circle character-image-lg", width: "80px" %>
           </div>
           <div>
             <p>更新情報やお知らせをツイートしています。</p>
