@@ -15,12 +15,12 @@
       <div class="card-content col s12">
         <h4 class="center">ミニオンとは</h4>
         <div class="center">
-          <%= image_tag "image1.jpg", class: "circle", width: "80px" %>
-          <%= image_tag "image2.jpg", class: "circle", width: "80px" %>
-          <%= image_tag "image3.jpg", class: "circle", width: "80px" %>
-          <%= image_tag "image4.jpg", class: "circle", width: "80px" %>
-          <%= image_tag "image5.jpg", class: "circle", width: "80px" %>
-          <%= image_tag "image6.jpg", class: "circle", width: "80px" %>
+          <%= image_tag "image1.png", class: "circle", width: "80px", style: "background-color: #FFEFD5;" %>
+          <%= image_tag "image2.png", class: "circle", width: "80px", style: "background-color: #FFEFD5;" %>
+          <%= image_tag "image3.png", class: "circle", width: "80px", style: "background-color: #FFEFD5;" %>
+          <%= image_tag "image4.png", class: "circle", width: "80px", style: "background-color: #FFEFD5;" %>
+          <%= image_tag "image5.png", class: "circle", width: "80px", style: "background-color: #FFEFD5;" %>
+          <%= image_tag "image6.png", class: "circle", width: "80px", style: "background-color: #FFEFD5;" %>
         </div>
         <div class="center">
           ミニオンとは、ゲーム内で連れて歩けるペットのようなものです。一緒にたたかってくれたりステータスが上がる訳ではありませんが、その愛らしい見た目から人気のコレクション要素の一つになっています。そんなミニオンですが、<%= Date.current.strftime('%Y/%m/%d') %>時点で<strong>全<%= Minion.count %>体</strong>ゲーム内に実装されています。ミニオン収集をする上で、まだ持っていないミニオンを簡単に確認できる場があったら便利だなという思いで当サイトを立ち上げました。みなさんのミニオン収集のパートナーとして、ぜひ当サイトをご利用ください。
