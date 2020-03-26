@@ -3,31 +3,33 @@
 
   <div class="row">
     <%= render "users/shared/error_messages", resource: resource %>
-    <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">新規登録</div>
-    <div class="card z-depth-1 col s12" style="margin-top: 0;">
-      <div class="card-content col s12">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">新規登録</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <div class="input-field">
-            <i class="material-icons prefix">email</i>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            <%= f.label :email %>
-          </div>
-          <div class="input-field">
-            <i class="material-icons prefix">lock</i>
-            <%= f.password_field :password, autocomplete: "new-password" %>
-            <%= f.label :password %>
-          </div>
-          <div class="input-field">
-            <i class="material-icons prefix">lock</i>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            <%= f.label :password_confirmation %>
-          </div>
-          <div class="center">
-            <%= f.button '新規登録', class: 'btn waves-effect waves-light', type: 'submit' %>
-          </div>
-        <% end %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div class="input-field">
+              <i class="material-icons prefix">email</i>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <%= f.label :email %>
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix">lock</i>
+              <%= f.password_field :password, autocomplete: "new-password" %>
+              <%= f.label :password %>
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix">lock</i>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+              <%= f.label :password_confirmation %>
+            </div>
+            <div class="center">
+              <%= f.button '新規登録', class: 'btn waves-effect waves-light', type: 'submit' %>
+            </div>
+          <% end %>
 
+        </div>
       </div>
     </div>
   </div>

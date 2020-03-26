@@ -8,7 +8,7 @@
       <div class="card z-depth-1 col s12" style="margin-top: 0;">
         <div class="card-content col s12">
           <div class="valign-wrapper">
-            <%= image_tag current_character.image_url, class: "character-image-lg" %>
+            <%= image_tag current_character.image_url, class: "circle character-image-lg", width: "80px" %>
             <div>
               <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= current_character.name %></div>
               <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= current_character.world %></div>
@@ -27,7 +27,7 @@
       <div class="card z-depth-1 col s12" style="margin-top: 0;">
         <div class="card-content col s12">
           <div class="valign-wrapper">
-            <%= image_tag @character.image_url, class: "character-image-lg" %>
+            <%= image_tag @character.image_url, class: "circle character-image-lg", width: "80px" %>
             <div>
               <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= @character.name %></div>
               <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= @character.world %></div>
@@ -91,9 +91,9 @@
 
             <% @minions.each do |minion| %>
               <% if minion.owned_by?(current_character) %>
-                <%= image_tag "#{minion.image_url}", class: "minion-image-sm"%>
+                <%= image_tag "#{minion.image_url}", class: "minion-image"%>
               <% else %>
-                <%= image_tag "#{minion.image_url}", class: "minion-image-sm", style: "opacity: 0.25" %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image", style: "opacity: 0.25" %>
               <% end %>
             <% end %>
 
@@ -110,9 +110,9 @@
 
             <% @minions.each do |minion| %>
               <% if minion.owned_by?(@character) %>
-                <%= image_tag "#{minion.image_url}", class: "minion-image-sm"%>
+                <%= image_tag "#{minion.image_url}", class: "minion-image"%>
               <% else %>
-                <%= image_tag "#{minion.image_url}", class: "minion-image-sm", style: "opacity: 0.25" %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image", style: "opacity: 0.25" %>
               <% end %>
             <% end %>
 
@@ -120,5 +120,8 @@
         </div>
       </div>
     </div>
+
+  </div>
+
 
 </div>

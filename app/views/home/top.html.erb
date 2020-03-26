@@ -2,13 +2,88 @@
 
 
   <div class="row">
-    <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">FF14MINIONS</div>
-    <div class="card z-depth-1 col s12" style="margin-top: 0;">
-      <div class="card-content col s12">
-        <p>Find me in app/views/home/top.html.erb</p>
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">トップページ</div>
+      <div class="card z-depth-1 col s12 infomation" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <h1 class="center">FF14MINIONS</h1>
+          <h5 class="center">あなたのミニオン収集のパートナー</h5>
+          <p class="center"><%= Character.count %>人のキャラクターが、<%= CharacterMinion.count %>体のミニオンを集めています。</p>
+        </div>
+        <div class="card-content col s12">
+          <div class="center" style="margin:1.68rem 0 2.8rem 0">
+            <%= link_to '今すぐキャラクター検索', characters_path, class: 'btn waves-effect waves-light' %>
+          </div>
+        </div>
       </div>
     </div>
-
-
   </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">キャラクターランキングTOP5</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <table class="centered">
+            <tbody>
+
+              <% @characters.each do |character| %>
+                <tr>
+                  <td><%= character.rank %></td>
+                  <td><%= image_tag "#{character.image_url}", class: "circle", width: "50px" %></td>
+                  <td><%= link_to character.name, character_path(character) %></td>
+                  <td><%= character.world %></td>
+                  <td><%= character.character_minions.count %></td>
+                </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+          <%= link_to 'もっと見る', rankings_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">ミニオンランキングTOP5</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <table class="centered">
+            <tbody>
+
+              <% @minions.each.with_index(1) do |minion, i| %>
+                <tr>
+                  <td><%= i %></td>
+                  <td><%= image_tag "#{minion.image_url}" %></td>
+                  <td><%= minion.name %></td>
+                  <td><%= minion.category.name %></td>
+                  <td>
+
+                    <% if user_signed_in? %>
+
+                      <% if current_user.current_character_id.present? %>
+                        <% if minion.owned_by?(current_character) %>
+                          <i class="material-icons">check</i>
+                        <% end %>
+                      <% end %>
+
+                    <% end %>
+
+                  </td>
+                  <td><%= minion.rarity.round(1) %>%</td>
+                </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+          <%= link_to 'もっと見る', rankings_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

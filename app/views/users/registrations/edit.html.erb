@@ -5,42 +5,44 @@
 
     <div class="row">
       <%= render "users/shared/error_messages", resource: resource %>
-      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">アカウント編集</div>
-      <div class="card z-depth-1 col s12" style="margin-top: 0;">
-        <div class="card-content col s12">
+      <div class="col s12">
+        <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">アカウント編集</div>
+        <div class="card z-depth-1 col s12" style="margin-top: 0;">
+          <div class="card-content col s12">
 
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <div class="input-field">
-              <i class="material-icons prefix">email</i>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-              <%= f.label :email %>
-            </div>
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <div class="input-field">
+                <i class="material-icons prefix">email</i>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <%= f.label :email %>
+              </div>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+              <div class="input-field">
+                <i class="material-icons prefix">lock</i>
+                <%= f.password_field :password, autocomplete: "new-password" %>
+                <%= f.label :password %>
+                <span class="helper-text">leave blank if you don't want to change it</span>
+              </div>
+              <div class="input-field">
+                <i class="material-icons prefix">lock</i>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                <%= f.label :password_confirmation %>
+              </div>
+              <div class="input-field">
+                <i class="material-icons prefix">lock</i>
+                <%= f.password_field :current_password, autocomplete: "current-password" %>
+                <%= f.label :current_password %>
+                <span class="helper-text">we need your current password to confirm your changes</span>
+              </div>
+
+              <div class="center">
+                <%= f.button '編集', class: 'btn waves-effect waves-light', type: 'submit' %>
+              </div>
             <% end %>
-            <div class="input-field">
-              <i class="material-icons prefix">lock</i>
-              <%= f.password_field :password, autocomplete: "new-password" %>
-              <%= f.label :password %>
-              <span class="helper-text">leave blank if you don't want to change it</span>
-            </div>
-            <div class="input-field">
-              <i class="material-icons prefix">lock</i>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-              <%= f.label :password_confirmation %>
-            </div>
-            <div class="input-field">
-              <i class="material-icons prefix">lock</i>
-              <%= f.password_field :current_password, autocomplete: "current-password" %>
-              <%= f.label :current_password %>
-              <span class="helper-text">we need your current password to confirm your changes</span>
-            </div>
 
-            <div class="center">
-              <%= f.button '編集', class: 'btn waves-effect waves-light', type: 'submit' %>
-            </div>
-          <% end %>
-
+          </div>
         </div>
       </div>
     </div>
@@ -49,11 +51,13 @@
 
 
   <div class="row">
-    <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">アカウント削除</div>
-    <div class="card z-depth-1 col s12" style="margin-top: 0;">
-      <div class="card-content col s12">
-        <div class="center">
-          <%= link_to '削除', registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn waves-effect waves-light' %>
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">アカウント削除</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div class="center">
+            <%= link_to '削除', registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn waves-effect waves-light' %>
+          </div>
         </div>
       </div>
     </div>
