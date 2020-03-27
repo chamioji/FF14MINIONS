@@ -62,10 +62,27 @@
       <div class="card z-depth-1 col s12" style="margin-top: 0;">
         <div class="card-content col s12">
           <div class="center">
-            <%= link_to t('.cancel'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: 'btn waves-effect waves-light' %>
+            <!-- モーダルのトリガー -->
+            <a href="#modal" class="waves-effect waves-light btn modal-trigger"><%= t('.cancel') %></a>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+
+  <!-- モーダルの内容 -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="valign-wrapper">
+        <i class="material-icons">warning</i>
+        <h5 style="margin: 12px;">注意</h5>
+      </div>
+      <p>アカウントを削除した場合マイキャラクターの選択情報とブックマークは削除されます。</p>
+      <p>(読み込まれたキャラクターは削除されません。)<p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">キャンセル</a><%= link_to t('.cancel'), registration_path(resource_name), method: :delete, class: 'btn waves-effect waves-light' %>
     </div>
   </div>
 
