@@ -17,7 +17,7 @@ ja:
       timeout: セッションがタイムアウトしました。再度ログインしてください。
       unauthenticated: 新規登録もしくはログインしてください。
     omniauth_callbacks:
-      failure: "%{kind} アカウントでログインに失敗しました。理由:(%{reason})"
+      failure: "%{kind} アカウントでログインに失敗しました。"
       success: "%{kind} アカウントでログインしました。"
     registrations:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。

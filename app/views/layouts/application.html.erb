@@ -106,16 +106,16 @@
 
               <% if current_user.current_character_id.present? %>
                 <%= image_tag "#{current_character.image_url}", class: "circle character-image-sm", width: "50px" %>
-                <span class="white-text truncate"><%= current_character.name %></span>
+                <%= link_to current_character.name, character_path(current_character), class: "white-text truncate" %>
               <% else %>
                 <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
-                <span class="white-text truncate">マイキャラクターを選択していません</span>
+                <%= link_to "マイキャラクターを選択していません", characters_path, class: "white-text truncate" %>
               <% end %>
 
             <% else %>
 
-              <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
-              <span class="white-text">ログインしてください</span>
+                <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
+                <%= link_to "ログインしてください", new_user_session_path, class: "white-text" %>
 
             <% end %>
 
