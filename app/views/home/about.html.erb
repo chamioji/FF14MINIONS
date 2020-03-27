@@ -23,45 +23,45 @@
             <%= image_tag "image5.png", class: "circle", width: "80px", style: "background-color: #FFEFD5;" %>
             <%= image_tag "image6.png", class: "circle", width: "80px", style: "background-color: #FFEFD5;" %>
           </div>
-          <div class="center">
-            ミニオンとは、ゲーム内で連れて歩けるペットのようなものです。一緒にたたかってくれたりステータスが上がる訳ではありませんが、その愛らしい見た目から人気のコレクション要素の一つになっています。そんなミニオンですが、<%= Date.current.strftime('%Y/%m/%d') %>時点で<strong>全<%= Minion.count %>体(!)</strong>ゲーム内に実装されています。ミニオン収集をする上で、まだ持っていないミニオンを簡単に確認できる場があったら便利だなという思いで当サイトを立ち上げました。みなさんのミニオン収集のパートナーとして、ぜひ当サイトをご利用ください。
+          <div class="col s10 offset-s1">
+            ミニオンとは、ゲーム内で連れて歩けるペットのようなものです。一緒にたたかってくれたりステータスが上がる訳ではありませんが、その愛らしい見た目から人気のコレクション要素の一つになっています。Final Fantasy XIVには<%= Date.current.strftime('%Y/%m/%d') %>時点で<strong>全<%= Minion.count %>体</strong>のミニオンが実装されています。ミニオン収集をする上で、まだ持っていないミニオンを簡単に確認できる場があったら便利だなという思いで当サイトを立ち上げました。みなさんのミニオン収集のパートナーとして、ぜひ当サイトをご利用ください。
           </div>
         </div>
 
         <div class="card-content col s12">
           <h4 class="center">このサイトでできること</h4>
-          <div class="col s4 center">
-            <p class="light-blue-text text-darken-1"><i class="material-icons large">people</i></p>
-            <h5>キャラクター</h5>
+          <div class="col s4">
+            <p class="light-blue-text text-darken-1 center"><i class="material-icons large">people</i></p>
+            <h5 class="center">キャラクター</h5>
             <p>取得済み/未取得ミニオンの一覧、取得率や統計をグラフ表示できます。</p>
           </div>
-          <div class="col s4 center">
-            <p class="light-blue-text text-darken-1"><i class="material-icons large">import_contacts</i></p>
-            <h5>インポート</h5>
+          <div class="col s4">
+            <p class="light-blue-text text-darken-1 center"><i class="material-icons large">import_contacts</i></p>
+            <h5 class="center">インポート</h5>
             <p>Lodestoneからキャラクターをインポートできます。インポートされたキャラクターは、以降自動的に更新されます。</p>
           </div>
-          <div class="col s4 center">
-            <p class="light-blue-text text-darken-1"><i class="material-icons large">equalizer</i></p>
-            <h5>ランキング</h5>
+          <div class="col s4">
+            <p class="light-blue-text text-darken-1 center"><i class="material-icons large">equalizer</i></p>
+            <h5 class="center">ランキング</h5>
             <p>インポートされたキャラクターの中からランキングを作成、表示できます。</p>
           </div>
         </div>
 
         <div class="card-content col s12">
           <h4 class="center">ログインすると...</h4>
-          <div class="col s4 center">
-            <p class="light-blue-text text-darken-1"><i class="material-icons large">person</i></p>
-            <h5>マイキャラクター</h5>
+          <div class="col s4">
+            <p class="light-blue-text text-darken-1 center"><i class="material-icons large">person</i></p>
+            <h5 class="center">マイキャラクター</h5>
             <p style="margin-bottom: 1.52rem;">マイキャラクターを設定し、ヘッダーやサイドバーからすぐにアクセスできます。</p>
           </div>
-          <div class="col s4 center">
-            <p class="light-blue-text text-darken-1"><i class="material-icons large">star</i></p>
-            <h5>ブックマーク</h5>
+          <div class="col s4">
+            <p class="light-blue-text text-darken-1 center"><i class="material-icons large">star</i></p>
+            <h5 class="center">ブックマーク</h5>
             <p style="margin-bottom: 1.52rem;">お気に入りのキャラクターやフレンドのキャラクターをブックマークできます。</p>
           </div>
-          <div class="col s4 center">
-            <p class="light-blue-text text-darken-1"><i class="material-icons large">compare_arrows</i></p>
-            <h5>比較</h5>
+          <div class="col s4">
+            <p class="light-blue-text text-darken-1 center"><i class="material-icons large">compare_arrows</i></p>
+            <h5 class="center">比較</h5>
             <p style="margin-bottom: 1.52rem;">マイキャラクターと他のキャラクターのミニオン取得数を比較できます。</p>
           </div>
         </div>

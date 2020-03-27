@@ -66,6 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 追加
 gem "chartkick"
 gem 'devise'
+gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'jquery-rails'
 gem 'kaminari'

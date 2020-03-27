@@ -5,12 +5,12 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @character = Character.find(params[:character_id])
-    bookmark = current_user.bookmarks.new(character_id: @character.id)
+    character = Character.find(params[:character_id])
+    bookmark = current_user.bookmarks.new(character_id: character.id)
     begin
       if bookmark.save
         redirect_back(fallback_location: root_path)
-        flash[:notice] = "ブックマークを保存しました。"
+        flash[:notice] = "#{character.name}をブックマークしました。"
       end
     rescue
       redirect_back(fallback_location: root_path)
@@ -18,12 +18,12 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    @character = Character.find(params[:character_id])
-    bookmark = current_user.bookmarks.find_by(character_id: @character.id)
+    character = Character.find(params[:character_id])
+    bookmark = current_user.bookmarks.find_by(character_id: character.id)
     begin
       if bookmark.destroy
         redirect_back(fallback_location: root_path)
-        flash[:notice] = "ブックマークを削除しました。"
+        flash[:notice] = "#{character.name}をブックマークから外しました。"
       end
     rescue
       redirect_back(fallback_location: root_path)

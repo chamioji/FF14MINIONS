@@ -6,7 +6,7 @@
 
   <div class="row">
     <div class="col s12">
-      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">Forgot your password?</div>
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;"><%= t('.forgot_your_password') %></div>
       <div class="card z-depth-1 col s12" style="margin-top: 0;">
         <div class="card-content col s12">
 
@@ -17,7 +17,7 @@
               <%= f.label :email %>
             </div>
             <div class="center">
-              <%= f.button '送信', class: 'btn waves-effect waves-light', type: 'submit' %>
+              <%= f.button t('.send_me_reset_password_instructions'), class: 'btn waves-effect waves-light', type: 'submit' %>
             </div>
           <% end %>
 

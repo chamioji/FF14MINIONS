@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col s12">
-      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">ログイン</div>
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;"><%= t('.sign_in') %></div>
       <div class="card z-depth-1 col s12" style="margin-top: 0;">
         <div class="card-content col s12">
 
@@ -18,8 +18,16 @@
               <%= f.password_field :password, autocomplete: "current-password" %>
               <%= f.label :password %>
             </div>
-  　　　　　　　<div class="center">
-              <%= f.button 'ログイン', class: 'btn waves-effect waves-light', type: 'submit' %>
+            <% if devise_mapping.rememberable? %>
+              <div class="input-field">
+                <label>
+                  <%= f.check_box :remember_me %>
+                  <span><%= f.label :remember_me %></span>
+                </label>
+              </div>
+            <% end %>
+  　　　　　　<div class="center">
+              <%= f.button t('.sign_in'), class: 'btn waves-effect waves-light', type: 'submit' %>
             </div>
           <% end %>
 

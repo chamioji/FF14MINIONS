@@ -1,16 +1,37 @@
-<h2>Resend unlock instructions</h2>
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;"><%= t('.resend_unlock_instructions') %></div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+
+          <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+            <div class="input-field">
+              <i class="material-icons prefix">email</i>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <%= f.label :email %>
+            </div>
+            <div class="center">
+              <%= f.button t('.resend_unlock_instructions'), class: 'btn waves-effect waves-light', type: 'submit' %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
 
-<%= render "users/shared/links" %>
+  <div class="row">
+    <div class="col s12">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+
+
+</div>

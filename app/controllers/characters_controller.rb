@@ -10,7 +10,6 @@ class CharactersController < ApplicationController
 
 
   def show
-
     @character = Character.find(params[:id])
     @minions = Minion.all
 
@@ -25,7 +24,6 @@ class CharactersController < ApplicationController
     Category.all.each do |category|
       @complete_rate.store(category.name, (@minions.joins(:characters).where(characters:{id: @character.id}, category_id: category.id).count / @minions.where(category_id: category.id).count.to_f * 100).round(1))
     end
-
   end
 
 
@@ -140,31 +138,13 @@ class CharactersController < ApplicationController
       end
 
       redirect_back(fallback_location: root_path)
-      flash[:notice] = "キャラクターを同期しました。"
+      flash[:notice] = "#{character.name}のキャラクター情報を同期しました。"
 
     rescue
       # キャラクターを読み込めません
       # そのキャラクターは既に読み込まれています
     end
 
-  end
-
-
-  def set_current_character
-    current_user.current_character_id = params[:id]
-    if current_user.save
-      redirect_back(fallback_location: root_path)
-      flash[:notice] = "マイキャラクターを設定しました。"
-    end
-  end
-
-
-  def reset_current_character
-    current_user.current_character_id = nil
-    if current_user.save
-      redirect_back(fallback_location: root_path)
-      flash[:notice] = "マイキャラクターを解除しました。"
-    end
   end
 
 

@@ -28,16 +28,16 @@
 
             <% if @character == current_character %>
               <i class="material-icons">person</i>
-              <%= link_to "マイキャラクターを解除", {controller: 'characters', action: 'reset_current_character'}, method: :post %>
+              <%= link_to "マイキャラクターから外す", {controller: 'users', action: 'reset'}, method: :post %>
             <% else %>
               <i class="material-icons">person_outline</i>
-              <%= link_to "マイキャラクターに設定", {controller: 'characters', action: 'set_current_character'}, method: :post %>
+              <%= link_to "マイキャラクターにする", {controller: 'users', action: 'set'}, method: :post %>
             <% end %>
 
           <% else %>
 
             <i class="material-icons">person_outline</i>
-            マイキャラクターに設定
+            マイキャラクターにする
             <a class="tooltipped valign-wrapper" data-position="top" data-tooltip="この機能を使うにはログインが必要です。">
               <i class="material-icons" style="color:#846C63; margin-left: 24px;">help_outline</i>
             </a>
@@ -54,7 +54,7 @@
               <%= link_to "ブックマークから外す", character_bookmarks_path(@character), method: :delete %>
             <% else %>
               <i class="material-icons">star_border</i>
-              <%= link_to "ブックマークに入れる", character_bookmarks_path(@character), method: :post %>
+              <%= link_to "ブックマークする", character_bookmarks_path(@character), method: :post %>
             <% end %>
 
           <% else %>

@@ -8,7 +8,7 @@
 
     <div class="row">
       <div class="col s12">
-        <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">アカウント編集</div>
+        <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;"><%= t('.title', resource: resource.model_name.human) %></div>
         <div class="card z-depth-1 col s12" style="margin-top: 0;">
           <div class="card-content col s12">
 
@@ -19,13 +19,18 @@
                 <%= f.label :email %>
               </div>
               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
               <% end %>
               <div class="input-field">
                 <i class="material-icons prefix">lock</i>
                 <%= f.password_field :password, autocomplete: "new-password" %>
                 <%= f.label :password %>
-                <span class="helper-text">leave blank if you don't want to change it</span>
+                <span class="helper-text">
+                  <%= t('.leave_blank_if_you_don_t_want_to_change_it') %>
+                  <% if @minimum_password_length %>
+                    <%= t('users.shared.minimum_password_length', count: @minimum_password_length) %>
+                  <% end %>
+                </span>
               </div>
               <div class="input-field">
                 <i class="material-icons prefix">lock</i>
@@ -36,11 +41,10 @@
                 <i class="material-icons prefix">lock</i>
                 <%= f.password_field :current_password, autocomplete: "current-password" %>
                 <%= f.label :current_password %>
-                <span class="helper-text">we need your current password to confirm your changes</span>
+                <span class="helper-text"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></span>
               </div>
-
               <div class="center">
-                <%= f.button '編集', class: 'btn waves-effect waves-light', type: 'submit' %>
+                <%= f.button t('.update'), class: 'btn waves-effect waves-light', type: 'submit' %>
               </div>
             <% end %>
 
@@ -54,11 +58,11 @@
 
   <div class="row">
     <div class="col s12">
-      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">アカウント削除</div>
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;"><%= t('.cancel_my_account') %></div>
       <div class="card z-depth-1 col s12" style="margin-top: 0;">
         <div class="card-content col s12">
           <div class="center">
-            <%= link_to '削除', registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn waves-effect waves-light' %>
+            <%= link_to t('.cancel'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: 'btn waves-effect waves-light' %>
           </div>
         </div>
       </div>
