@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
 
-  before_action :authenticate_current_character!, only: :compare
+  before_action :authenticate_user!, only: [:compare]
+  before_action :authenticate_current_character!, only: [:compare]
 
 
   def index

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def set
     character = Character.find(params[:id])
     current_user.current_character_id = params[:id]

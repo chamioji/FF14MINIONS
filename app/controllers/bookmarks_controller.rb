@@ -1,5 +1,7 @@
 class BookmarksController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @characters = current_user.bookmark_characters.page(params[:page]).per(30)
   end
