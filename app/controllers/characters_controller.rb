@@ -17,12 +17,12 @@ class CharactersController < ApplicationController
     @possession_rate = ["取得済み", @character.character_minions.count], ["未取得", @minions.count - @character.character_minions.count]
 
     @component_rate = {}
-    Category.all.map do |category|
+    Category.all.each do |category|
       @component_rate.store(category.name, @minions.joins(:characters).where(characters:{id: @character.id}, category_id: category.id).count)
     end
 
     @complete_rate = {}
-    Category.all.map do |category|
+    Category.all.each do |category|
       @complete_rate.store(category.name, (@minions.joins(:characters).where(characters:{id: @character.id}, category_id: category.id).count / @minions.where(category_id: category.id).count.to_f * 100).round(1))
     end
 
@@ -140,6 +140,7 @@ class CharactersController < ApplicationController
       end
 
       redirect_back(fallback_location: root_path)
+      flash[:notice] = "キャラクターを同期しました。"
 
     rescue
       # キャラクターを読み込めません
@@ -151,15 +152,19 @@ class CharactersController < ApplicationController
 
   def set_current_character
     current_user.current_character_id = params[:id]
-    current_user.save
-    redirect_back(fallback_location: root_path)
+    if current_user.save
+      redirect_back(fallback_location: root_path)
+      flash[:notice] = "マイキャラクターを設定しました。"
+    end
   end
 
 
   def reset_current_character
     current_user.current_character_id = nil
-    current_user.save
-    redirect_back(fallback_location: root_path)
+    if current_user.save
+      redirect_back(fallback_location: root_path)
+      flash[:notice] = "マイキャラクターを解除しました。"
+    end
   end
 
 

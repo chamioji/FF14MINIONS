@@ -6,6 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_characters, through: :bookmarks, source: :character
+
   # ユーザーがレコードにない場合のみ新たに作成する
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first

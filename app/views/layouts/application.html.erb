@@ -6,20 +6,19 @@
     <title>FF14MINIONS</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </head>
 
 
   <body>
 
-
     <nav>
       <div class="nav-wrapper">
         <%= link_to 'FF14MINIONS', root_path, class: "brand-logo" %>
 
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <ul class="right hide-on-med-and-down">
             <li>
               <%= link_to characters_path do %>
                 <i class="material-icons prefix">search</i>
@@ -30,7 +29,7 @@
             <li><%= link_to 'ランキング', rankings_path %></li>
             <li>
               <!-- ドロップダウンのトリガー -->
-              <a class="dropdown-trigger valign-wrapper" href="#!" data-target="dropdown1">
+              <a href="#!" data-target="dropdown" class="dropdown-trigger valign-wrapper">
 
                 <% if user_signed_in? %>
 
@@ -57,7 +56,7 @@
           <!-- サイドバーのトリガー -->
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-          <ul id="nav-mobile" class="right show-on-medium-and-down hide-on-med-and-up">
+          <ul class="right show-on-medium-and-down hide-on-med-and-up">
             <li>
               <%= link_to characters_path do %>
                 <i class="material-icons">search</i>
@@ -70,7 +69,7 @@
 
 
     <!-- ドロップダウンの内容 -->
-    <ul id="dropdown1" class="dropdown-content">
+    <ul id="dropdown" class="dropdown-content">
 
       <% if user_signed_in? %>
 
@@ -80,8 +79,9 @@
           <li><%= link_to 'マイキャラクターを検索', characters_path %></li>
         <% end %>
 
-        <li><%= link_to 'アカウント', edit_user_registration_path %></li>
+        <li><%= link_to 'ブックマーク', bookmarks_path %></li>
         <li class="divider"></li>
+        <li><%= link_to 'アカウント', edit_user_registration_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
 
       <% else %>
@@ -136,8 +136,9 @@
             <li><%= link_to 'マイキャラクターを検索', characters_path %></li>
           <% end %>
 
-          <li><%= link_to 'アカウント', edit_user_registration_path %></li>
+          <li><%= link_to 'ブックマーク', bookmarks_path %></li>
           <li class="divider"></li>
+          <li><%= link_to 'アカウント', edit_user_registration_path %></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
 
         <% else %>
@@ -153,7 +154,17 @@
 
 
     <main>
+
+      <% if flash.any? %>
+        <script>
+          <% flash.each do |key, value| %>
+            M.toast({html: '<%= value %>'})
+          <% end %>
+        </script>
+      <% end %>
+
       <%= yield %>
+
     </main>
 
 
@@ -169,7 +180,7 @@
 
 
   <script>
-    $( document ).ready(function () {
+    $(document).ready(function () {
       $('.dropdown-trigger').dropdown();
       $('.sidenav').sidenav();
       $('.tooltipped').tooltip();

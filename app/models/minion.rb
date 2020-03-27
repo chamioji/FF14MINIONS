@@ -1,6 +1,6 @@
 class Minion < ApplicationRecord
 
-  has_many :character_minions
+  has_many :character_minions, dependent: :destroy
   has_many :characters, through: :character_minions
 
   belongs_to :category

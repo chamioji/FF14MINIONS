@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_21_061225) do
+ActiveRecord::Schema.define(version: 2020_03_27_030231) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "character_id"], name: "index_bookmarks_on_user_id_and_character_id", unique: true
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"

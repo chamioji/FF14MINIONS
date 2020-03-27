@@ -1,10 +1,12 @@
 <div class="container">
 
 
+  <%= render "users/shared/error_messages", resource: resource %>
+
+
   <% if current_user.uid.nil? %>
 
     <div class="row">
-      <%= render "users/shared/error_messages", resource: resource %>
       <div class="col s12">
         <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">アカウント編集</div>
         <div class="card z-depth-1 col s12" style="margin-top: 0;">

@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
 
-  has_many :minions
+  has_many :minions, dependent: :destroy
 
 end
