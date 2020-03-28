@@ -17,7 +17,7 @@
               <%= f.label :email %>
             </div>
             <div class="center">
-              <%= f.button t('.resend_confirmation_instructions'), class: 'btn waves-effect waves-light', type: 'submit' %>
+              <%= f.button t('.resend_confirmation_instructions'), class: 'btn waves-effect waves-light', type: 'submit', data: { disable_with: t('.resend_confirmation_instructions') } %>
             </div>
           <% end %>
 

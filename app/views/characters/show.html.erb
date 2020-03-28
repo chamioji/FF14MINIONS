@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="card-action valign-wrapper">
-          <i class="material-icons">sync</i><%= link_to "同期", {controller: 'characters', action: 'sync'}, method: :post %>
+          <i class="material-icons">sync</i><%= link_to "同期", {controller: 'characters', action: 'sync'}, method: :post, data: { disable_with: "同期" } %>
         </div>
         <div class="card-action valign-wrapper">
 
@@ -28,10 +28,10 @@
 
             <% if @character == current_character %>
               <i class="material-icons">person</i>
-              <%= link_to "マイキャラクターから外す", {controller: 'users', action: 'reset'}, method: :post %>
+              <%= link_to "マイキャラクターから外す", {controller: 'users', action: 'reset'}, method: :post, data: { disable_with: "マイキャラクターから外す" } %>
             <% else %>
               <i class="material-icons">person_outline</i>
-              <%= link_to "マイキャラクターにする", {controller: 'users', action: 'set'}, method: :post %>
+              <%= link_to "マイキャラクターにする", {controller: 'users', action: 'set'}, method: :post, data: { disable_with: "マイキャラクターにする" } %>
             <% end %>
 
           <% else %>
@@ -51,10 +51,10 @@
 
             <% if @character.bookmarked_by?(current_user) %>
               <i class="material-icons">star</i>
-              <%= link_to "ブックマークから外す", character_bookmarks_path(@character), method: :delete %>
+              <%= link_to "ブックマークから外す", character_bookmarks_path(@character), method: :delete, data: { disable_with: "ブックマークから外す" } %>
             <% else %>
               <i class="material-icons">star_border</i>
-              <%= link_to "ブックマークする", character_bookmarks_path(@character), method: :post %>
+              <%= link_to "ブックマークする", character_bookmarks_path(@character), method: :post, data: { disable_with: "ブックマークする" } %>
             <% end %>
 
           <% else %>

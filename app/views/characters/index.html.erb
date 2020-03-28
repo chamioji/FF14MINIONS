@@ -31,12 +31,12 @@
             <%= form_with url: {:controller => :characters, :action => :import}, data: {remote: false} do |f| %>
               <div class="input-field">
                 <i class="material-icons prefix">import_contacts</i>
-                <%= f.text_field :character_id %>
-                <%= f.label :"character_id", "○○○○○○○○" %>
+                <%= f.number_field :lodestone_id, min: 1, max: 99999999 %>
+                <%= f.label :"lodestone_id", "○○○○○○○○" %>
                 <span class="helper-text">LodestoneのキャラクターID (https://jp.finalfantasyxiv.com/lodestone/character/○○○○○○○○/) を入力</span>
               </div>
               <div class="center">
-                <%= f.button '読み込む', class: 'btn waves-effect waves-light', type: 'submit' %>
+                <%= f.button '読み込む', class: 'btn waves-effect waves-light', type: 'submit', data: { disable_with: "読み込む" } %>
               </div>
             <% end %>
 

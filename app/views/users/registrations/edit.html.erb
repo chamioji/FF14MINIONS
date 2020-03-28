@@ -44,7 +44,7 @@
                 <span class="helper-text"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></span>
               </div>
               <div class="center">
-                <%= f.button t('.update'), class: 'btn waves-effect waves-light', type: 'submit' %>
+                <%= f.button t('.update'), class: 'btn waves-effect waves-light', type: 'submit', data: { disable_with: t('.update') } %>
               </div>
             <% end %>
 
@@ -79,10 +79,10 @@
         <h5 style="margin: 12px;">注意</h5>
       </div>
       <p>アカウントを削除した場合マイキャラクターの選択情報とブックマークは削除されます。</p>
-      <p>(読み込まれたキャラクターは削除されません。)<p>
+      <p>(読み込まれたキャラクター情報は削除されません。)<p>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">キャンセル</a><%= link_to t('.cancel'), registration_path(resource_name), method: :delete, class: 'btn waves-effect waves-light' %>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">キャンセル</a><%= link_to t('.cancel'), registration_path(resource_name), method: :delete, class: 'btn waves-effect waves-light', data: { disable_with: t('.cancel') } %>
     </div>
   </div>
 

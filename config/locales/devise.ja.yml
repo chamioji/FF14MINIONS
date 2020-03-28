@@ -12,8 +12,8 @@ ja:
   devise:
     failure:
       already_authenticated: 既にログインしています。
-      invalid: "%{authentication_keys}またはパスワードが違います。aa"
-      not_found_in_database: "%{authentication_keys}またはパスワードが違います。aa"
+      invalid: "%{authentication_keys}またはパスワードが違います。"
+      not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
       timeout: セッションがタイムアウトしました。再度ログインしてください。
       unauthenticated: 新規登録もしくはログインしてください。
     omniauth_callbacks:
