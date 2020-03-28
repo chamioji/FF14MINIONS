@@ -9,13 +9,15 @@ Rails.application.routes.draw do
   post 'characters/:id/reset' => 'users#reset'
 
   resources :bookmarks, only: [:index]
+
   resources :characters, only: [:index, :show] do
     resource :bookmarks, only: [:create, :destroy]
   end
-  get 'characters/:id/compare' => 'characters#compare', as: 'compare_character'
   post 'characters/import' => 'characters#import', as: 'import_character'
   post 'characters/:id/sync' => 'characters#sync', as: 'sync_character'
-  resources :rankings, only: [:index]
-  resources :minions, only: [:index]
+  get 'characters/:id/compare' => 'characters#compare', as: 'compare_character'
 
+  resources :rankings, only: [:index]
+
+  resources :minions, only: [:index]
 end

@@ -76,6 +76,7 @@ gem 'nokogiri'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'ransack'
+gem 'whenever', require: false
 
 group :production do
   gem 'mysql2'
