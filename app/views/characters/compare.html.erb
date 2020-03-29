@@ -1,0 +1,127 @@
+<div class="container">
+
+
+  <div class="row">
+
+    <div class="col s6">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">キャラクター</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div class="valign-wrapper">
+            <%= image_tag current_character.image_url, class: "circle character-image-lg", width: "80px" %>
+            <div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= current_character.name %></div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= current_character.world %></div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">star</i>RANK: #<%= current_character.rank %></div>
+              <div class="valign-wrapper character-prof">
+                <i class="material-icons">import_contacts</i><%= link_to "Lodestone", "https://jp.finalfantasyxiv.com/lodestone/character/" + current_character.id.to_s + "/", target: :_blank %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s6">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">キャラクター</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div class="valign-wrapper">
+            <%= image_tag @character.image_url, class: "circle character-image-lg", width: "80px" %>
+            <div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= @character.name %></div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= @character.world %></div>
+              <div class="valign-wrapper character-prof"><i class="material-icons">star</i>RANK: #<%= @character.rank %></div>
+              <div class="valign-wrapper character-prof">
+                <i class="material-icons">import_contacts</i><%= link_to "Lodestone", "https://jp.finalfantasyxiv.com/lodestone/character/" + @character.id.to_s + "/", target: :_blank %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="col s6">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">ミニオン取得率</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div class="valign-wrapper">
+            <span class="rate-title-lg" style="margin-left: auto;">
+              <%= current_character.character_minions.count %>
+            </span>
+            <span class="rate-title-sm" style="margin-right: auto;">
+              /<%= @minions.count %>(<%= (current_character.character_minions.count / @minions.count.to_f * 100).round(1) %>%)
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s6">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">ミニオン取得率</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div class="valign-wrapper">
+            <span class="rate-title-lg" style="margin-left: auto;">
+              <%= @character.character_minions.count %>
+            </span>
+            <span class="rate-title-sm" style="margin-right: auto;">
+              /<%= @minions.count %>(<%= (@character.character_minions.count / @minions.count.to_f * 100).round(1) %>%)
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="col s6">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">ミニオン</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div>
+
+            <% @minions.each do |minion| %>
+              <% if minion.owned_by?(current_character) %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image"%>
+              <% else %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image", style: "opacity: 0.25" %>
+              <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s6">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">ミニオン</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div>
+
+            <% @minions.each do |minion| %>
+              <% if minion.owned_by?(@character) %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image"%>
+              <% else %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image", style: "opacity: 0.25" %>
+              <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

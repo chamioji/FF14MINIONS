@@ -1,14 +1,15 @@
-<div class="body">
-  <div class="container">
-    <div class="row">
+<div class="container">
 
-      <%= render "users/shared/error_messages", resource: resource %>
 
-      <div class="col s12">
-        <div class="content__title z-depth-1">
-          <strong>新規登録</strong>
-        </div>
-        <div class="content__body z-depth-1">
+  <%= render "users/shared/error_messages", resource: resource %>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;"><%= t('.sign_up') %></div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <div class="input-field">
               <i class="material-icons prefix">email</i>
@@ -19,23 +20,33 @@
               <i class="material-icons prefix">lock</i>
               <%= f.password_field :password, autocomplete: "new-password" %>
               <%= f.label :password %>
+              <span class="helper-text">
+                <% if @minimum_password_length %>
+                  <%= t('users.shared.minimum_password_length', count: @minimum_password_length) %>
+                <% end %>
+              </span>
             </div>
             <div class="input-field">
               <i class="material-icons prefix">lock</i>
               <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
               <%= f.label :password_confirmation %>
             </div>
-            <div class="actions center">
-              <%= f.button '新規登録', class: 'btn waves-effect waves-light', type: 'button', onclick: 'submit();' %>
+            <div class="center">
+              <%= f.button t('.sign_up'), class: 'btn waves-effect waves-light', type: 'submit', data: { disable_with: t('.sign_up') } %>
             </div>
           <% end %>
+
         </div>
       </div>
-
-      <div class="col s12">
-        <%= render "users/shared/links" %>
-      </div>
-
     </div>
   </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+
+
 </div>

@@ -1,0 +1,182 @@
+<div class="container">
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">キャラクター</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div class="valign-wrapper">
+            <%= image_tag @character.image_url, class: "circle character-image-lg", width: "80px" %>
+            <div>
+              <div class="valign-wrapper character-profile"><i class="material-icons">people</i><%= @character.name %></div>
+              <div class="valign-wrapper character-profile"><i class="material-icons">place</i><%= @character.world %></div>
+              <div class="valign-wrapper character-profile"><i class="material-icons">equalizer</i>RANK: #<%= @character.rank %></div>
+              <div class="valign-wrapper character-profile">
+                <i class="material-icons">import_contacts</i>
+                <%= link_to "Lodestone", "https://jp.finalfantasyxiv.com/lodestone/character/" + @character.id.to_s + "/", target: :_blank %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-action valign-wrapper">
+          <i class="material-icons">sync</i><%= link_to "同期", {controller: 'characters', action: 'sync'}, method: :post, data: { disable_with: "同期" } %>
+        </div>
+        <div class="card-action valign-wrapper">
+
+          <% if user_signed_in? %>
+
+            <% if @character == current_character %>
+              <i class="material-icons">person</i>
+              <%= link_to "マイキャラクターから外す", {controller: 'users', action: 'reset'}, method: :post, data: { disable_with: "マイキャラクターから外す" } %>
+            <% else %>
+              <i class="material-icons">person_outline</i>
+              <%= link_to "マイキャラクターにする", {controller: 'users', action: 'set'}, method: :post, data: { disable_with: "マイキャラクターにする" } %>
+            <% end %>
+
+          <% else %>
+
+            <i class="material-icons">person_outline</i>
+            マイキャラクターにする
+            <a class="tooltipped valign-wrapper" data-position="top" data-tooltip="この機能を使うにはログインが必要です。">
+              <i class="material-icons" style="color:#846C63; margin-left: 24px;">help_outline</i>
+            </a>
+
+          <% end %>
+
+        </div>
+        <div class="card-action valign-wrapper" id="bookmarks">
+
+          <% if user_signed_in? %>
+
+            <% if @character.bookmarked_by?(current_user) %>
+              <i class="material-icons">star</i>
+              <%= link_to "ブックマークから外す", character_bookmarks_path(@character), method: :delete, data: { disable_with: "ブックマークから外す" } %>
+            <% else %>
+              <i class="material-icons">star_border</i>
+              <%= link_to "ブックマークする", character_bookmarks_path(@character), method: :post, data: { disable_with: "ブックマークする" } %>
+            <% end %>
+
+          <% else %>
+
+            <i class="material-icons">star_border</i>
+            ブックマークする
+            <a class="tooltipped valign-wrapper" data-position="top" data-tooltip="この機能を使うにはログインが必要です。">
+              <i class="material-icons" style="color:#846C63; margin-left: 24px;">help_outline</i>
+            </a>
+
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">ミニオン取得率</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div class="valign-wrapper">
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+               class="twitter-share-button"
+               data-size="large"
+               data-text="<%= @character.name %> / <%= @character.world %>, ミニオン取得率: <%= @character.character_minions.count %>/<%= @minions.count %>(<%= (@character.character_minions.count / @minions.count.to_f * 100).round(1) %>%)"
+               data-hashtags="FF14MINIONS, FF14"
+               data-related="ff14minions"
+               data-lang="ja"
+               data-show-count="false">ツイート</a>
+            <div class="valign-wrapper" style="margin-left: 34.5px;">
+              <i class="material-icons">compare_arrows</i>
+
+              <% if user_signed_in? %>
+
+                <% if current_user.current_character_id.present? %>
+                  <% if @character == current_character %>
+                    <%= link_to "他のキャラクターと比較", characters_path %>
+                  <% else %>
+                    <%= link_to "マイキャラクターと比較", compare_character_path(@character) %>
+                  <% end %>
+                <% else %>
+                マイキャラクターと比較
+                <a class="tooltipped valign-wrapper" data-position="top" data-tooltip="この機能を使うにはマイキャラクターが必要です。">
+                  <i class="material-icons" style="color:#846C63; margin-left: 24px;">help_outline</i>
+                </a>
+                <% end %>
+
+              <% else %>
+
+                マイキャラクターと比較
+                <a class="tooltipped valign-wrapper" data-position="top" data-tooltip="この機能を使うにはログインが必要です。">
+                  <i class="material-icons" style="color:#846C63; margin-left: 24px;">help_outline</i>
+                </a>
+
+              <% end %>
+
+            </div>
+          </div>
+          <div class="valign-wrapper">
+            <span class="rate-title-lg" style="margin-left: auto;">
+              <%= @character.character_minions.count %>
+            </span>
+            <span class="rate-title-sm">
+              /<%= @minions.count %>(<%= (@character.character_minions.count / @minions.count.to_f * 100).round(1) %>%)
+            </span>
+            <div style="margin-right: auto;">
+              <%= pie_chart @possession_rate, suffix: "個", width: "300px" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">ミニオン</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <div>
+
+            <% @minions.each do |minion| %>
+              <% if minion.owned_by?(@character) %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image"%>
+              <% else %>
+                <%= image_tag "#{minion.image_url}", class: "minion-image", style: "opacity: 0.25" %>
+              <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">カテゴリー 構成比率</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <%= pie_chart @component_rate, suffix: "個" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">カテゴリー コンプリート率</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          <%= bar_chart @complete_rate, min: 0, max: 100, suffix: "%" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

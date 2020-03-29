@@ -19,31 +19,91 @@
 $primary-color: #3D5A99 !default;
 @import 'materialize';
 
+// 上書きしたクラス //
+//
+
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  color: #846C63;
+  background-color: #F6F4F1;
+  display: flex; // Sticky Footer
+  min-height: 100vh; // Sticky Footer
+  flex-direction: column; // Sticky Footer
 }
 
 main {
-  flex: 1 0 auto;
+  flex: 1 0 auto; // Sticky Footer
 }
 
-.header__character-image {
-  border-radius: 50%;
-  height: 50px;
-  width:  50px;
-  vertical-align: middle;
+nav .brand-logo {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-.body {
+table {
+  margin: 24px 0 24px 0;
+}
+
+td {
+  padding: 5px;
+}
+
+th {
+  padding: 5px;
+}
+
+.card {
+  border-radius: 0 0 15px 15px;
+}
+
+.container {
   margin: 40px auto;
 }
 
-.content__body {
-  padding: 40px 20px;
+.page-footer {
+  padding-top: 0;
 }
 
 .pagination {
-  text-align: center
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// 作成したクラス //
+//
+
+.card-label {
+  background-color: $primary-color;
+  border-radius: 15px 15px 0 0;
+  color: #FFFFFF;
+}
+
+.character-image-lg {
+  margin-right: 34.5px;
+}
+
+.character-image-sm {
+  margin-right: 15px;
+}
+
+.character-profile {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.infomation {
+  background: image-url('background.jpg');
+  background-size: cover;
+  color: #FFFFFF;
+}
+
+.minion-image {
+  margin: 6px;
+}
+
+.rate-title-lg {
+  font-size: 58px;
+}
+
+.rate-title-sm {
+  font-size: 29px;
 }

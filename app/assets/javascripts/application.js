@@ -14,8 +14,6 @@
 //= require activestorage
 //= require jquery
 //= require materialize
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
-
-$( document ).ready(function () {
-  $(".dropdown-trigger").dropdown();
-});

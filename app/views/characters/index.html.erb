@@ -1,0 +1,87 @@
+<div class="container">
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">キャラクター検索</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-tabs">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a class="active" href="#site" data-toggle="tab">このサイトから</a></li>
+            <li class="tab"><a href="#lodestone" data-toggle="tab">Lodestoneから</a></li>
+          </ul>
+        </div>
+        <div class="card-content col s12">
+          <div id="site">
+
+            <%= form_tag characters_path, method: :get do %>
+              <div class="input-field">
+                <i class="material-icons prefix">search</i>
+                <%= text_field_tag :q, params[:q] %>
+                <%= label_tag :キャラクター名 %>
+              </div>
+              <div class="center">
+              <%= button_tag '検索', class: 'btn waves-effect waves-light' %>
+              </div>
+            <% end %>
+
+          </div>
+          <div id="lodestone">
+
+            <%= form_with url: {:controller => :characters, :action => :import}, data: {remote: false} do |f| %>
+              <div class="input-field">
+                <i class="material-icons prefix">import_contacts</i>
+                <%= f.number_field :lodestone_id, min: 1, max: 99999999 %>
+                <%= f.label :"lodestone_id", "○○○○○○○○" %>
+                <span class="helper-text">LodestoneのキャラクターID (https://jp.finalfantasyxiv.com/lodestone/character/○○○○○○○○/) を入力</span>
+              </div>
+              <div class="center">
+                <%= f.button '読み込む', class: 'btn waves-effect waves-light', type: 'submit', data: { disable_with: "読み込む" } %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card-label z-depth-1 col s12" style="padding: 8px 34.5px;">キャラクター</div>
+      <div class="card z-depth-1 col s12" style="margin-top: 0;">
+        <div class="card-content col s12">
+          全<%= @characters.total_count %>件
+          <table class="centered">
+            <thead>
+              <tr>
+                <th></th>
+                <th>キャラクター名</th>
+                <th>ワールド名</th>
+                <th>ミニオン取得数</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <% @characters.each do |character| %>
+                <tr>
+                  <td><%= image_tag "#{character.image_url}", class: "circle", width: "50px" %></td>
+                  <td><%= link_to character.name, character_path(character) %></td>
+                  <td><%= character.world %></td>
+                  <td><%= character.character_minions.count %></td>
+                </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+          <div class="center">
+            <%= paginate @characters %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

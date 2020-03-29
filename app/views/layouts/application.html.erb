@@ -1,68 +1,201 @@
 <!DOCTYPE html>
 <html>
 
+
   <head>
     <title>FF14MINIONS</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </head>
+
 
   <body>
 
     <nav>
       <div class="nav-wrapper">
         <%= link_to 'FF14MINIONS', root_path, class: "brand-logo" %>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><%= link_to 'このサイトについて', about_path %></li>
-          <li><%= link_to 'ミニオン', minions_path %></li>
-          <li><%= link_to 'ランキング', root_path %></li>
-          <li><%= image_tag ENV["CHARACTER_IMAGE_URL"], class: "header__character-image" %></li>
-          <!-- ドロップダウンのトリガー -->
-          <li>
-            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-              キャラクター名(サーバー名)
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
-          <!-- ドロップダウンの内容 -->
-          <ul id="dropdown1" class="dropdown-content">
-            <li class="divider"></li>
-            <li><%= link_to 'マイページ', root_path %></li>
-            <li><%= link_to 'Lodestone', root_path %></li>
-            <li class="divider"></li>
-            <!-- ログイン状況による分岐まで仮設置 -->
-            <% unless user_signed_in? %>
-              <li><%= link_to '新規登録', new_user_registration_path %></li>
-              <li><%= link_to 'ログイン', new_user_session_path %></li>
-            <% end %>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <%= link_to characters_path do %>
+                <i class="material-icons prefix">search</i>
+              <% end %>
+            </li>
+            <li><%= link_to 'このサイトについて', about_path %></li>
+            <li><%= link_to 'ミニオン', minions_path %></li>
+            <li><%= link_to 'ランキング', rankings_path %></li>
+            <li>
+              <!-- ドロップダウンのトリガー -->
+              <a href="#!" data-target="dropdown" class="dropdown-trigger valign-wrapper">
+
+                <% if user_signed_in? %>
+
+                  <% if current_user.current_character_id.present? %>
+                    <%= image_tag "#{current_character.image_url}", class: "circle character-image-sm", width: "50px" %>
+                    <%= current_character.name %>
+                  <% else %>
+                    <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
+                    マイキャラクターを選択していません
+                  <% end %>
+
+                <% else %>
+
+                  <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
+                  ログインしてください
+
+                <% end %>
+
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
           </ul>
-        </ul>
+
+          <!-- サイドバーのトリガー -->
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+          <ul class="right show-on-medium-and-down hide-on-med-and-up">
+            <li>
+              <%= link_to characters_path do %>
+                <i class="material-icons">search</i>
+              <% end %>
+            </li>
+          </ul>
+
       </div>
     </nav>
 
-    <main>
-      <!-- ログイン状況による分岐まで仮設置 -->
+
+    <!-- ドロップダウンの内容 -->
+    <ul id="dropdown" class="dropdown-content">
+
       <% if user_signed_in? %>
-        ログイン中
+
+        <% if current_user.current_character_id.present? %>
+          <li><%= link_to 'マイキャラクター', character_path(current_character) %></li>
+        <% else %>
+          <li><%= link_to 'マイキャラクターを検索', characters_path %></li>
+        <% end %>
+
+        <li><%= link_to 'ブックマーク', bookmarks_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to 'アカウント', edit_user_registration_path %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { disable_with: "ログアウト" } %></li>
+
+      <% else %>
+
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <li><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to '新規登録', new_user_registration_path %></li>
+
       <% end %>
+
+    </ul>
+
+
+    <!-- サイドバーの内容 -->
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <div style="background-color: #3D5A99; padding: 16px 32px 16px 32px;">
+          <div class="valign-wrapper">
+
+            <% if user_signed_in? %>
+
+              <% if current_user.current_character_id.present? %>
+                <%= image_tag "#{current_character.image_url}", class: "circle character-image-sm", width: "50px" %>
+                <%= link_to current_character.name, character_path(current_character), class: "white-text truncate" %>
+              <% else %>
+                <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
+                <%= link_to "マイキャラクターを選択していません", characters_path, class: "white-text truncate" %>
+              <% end %>
+
+            <% else %>
+
+                <%= image_tag "no_image.png", class: "circle character-image-sm", width: "50px" %>
+                <%= link_to "ログインしてください", new_user_session_path, class: "white-text" %>
+
+            <% end %>
+
+          </div>
+        </div>
+      </li>
+
+        <li><%= link_to 'このサイトについて', about_path %></li>
+        <li><%= link_to 'ミニオン', minions_path %></li>
+        <li><%= link_to 'ランキング', rankings_path %></li>
+        <li class="divider"></li>
+
+        <% if user_signed_in? %>
+
+          <% if current_user.current_character_id.present? %>
+            <li><%= link_to 'マイキャラクター', character_path(current_character) %></li>
+          <% else %>
+            <li><%= link_to 'マイキャラクターを検索', characters_path %></li>
+          <% end %>
+
+          <li><%= link_to 'ブックマーク', bookmarks_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to 'アカウント', edit_user_registration_path %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { disable_with: "ログアウト" } %></li>
+
+        <% else %>
+
+          <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <li><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to '新規登録', new_user_registration_path %></li>
+
+        <% end %>
+
+    </ul>
+
+
+    <main>
+
+      <% if flash.any? %>
+        <script>
+          <% flash.each do |key, value| %>
+            M.toast({html: '<%= value %>'})
+          <% end %>
+        </script>
+      <% end %>
+
       <%= yield %>
+
     </main>
+
 
     <footer class="page-footer">
       <div class="container">
-        <h5 class="white-text">FF14MINIONS</h5>
-        <p class="white-text">Final Fantsy XIVのコレクション要素"ミニオン"の取得状況ランキングサイトです。</p>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          <p class="white-text">Copyright (C) 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</p>
-        </div>
+        <p>記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。</p>
+        <p>Copyright (C) 2010 - 2020 SQUARE ENIX CO., LTD. All Rights Reserved.</p>
       </div>
     </footer>
 
+
   </body>
+
+
+  <script>
+    $(document).ready(function () {
+      $('.dropdown-trigger').dropdown();
+      $('.sidenav').sidenav();
+      $('.tooltipped').tooltip();
+      $('.modal').modal();
+      $('ul.tabs').tabs();
+      $('a[data-toggle="tab"]').click(function(e) {
+        if (history.replaceState) {
+          history.replaceState(null, null, '#' + $(e.target).attr('href').substr(1));
+        } else {
+          location.hash = '#' + $(e.target).attr('href').substr(1);
+        }
+        $(window).trigger('hashchange');
+      });
+    });
+  </script>
+
 
 </html>

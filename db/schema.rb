@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_15_124652) do
+ActiveRecord::Schema.define(version: 2020_03_27_030231) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "character_id"], name: "index_bookmarks_on_user_id_and_character_id", unique: true
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "character_minions", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "minion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.string "world"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -22,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_03_15_124652) do
     t.string "name"
     t.string "image_url"
     t.integer "category_id"
+    t.integer "sort"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,10 +56,9 @@ ActiveRecord::Schema.define(version: 2020_03_15_124652) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
-    t.string "server"
-    t.string "url"
-    t.string "image_url"
+    t.integer "current_character_id"
+    t.string "provider"
+    t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
