@@ -60,10 +60,6 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-group :production do
-  gem 'mysql2', '~> 0.3.18'
-end
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -81,3 +77,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'ransack'
 gem 'whenever', require: false
+
+group :production do
+  gem 'mysql2'
+end
+
