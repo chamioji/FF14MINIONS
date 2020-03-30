@@ -31,7 +31,7 @@
             <%= form_with url: {:controller => :characters, :action => :import}, data: {remote: false} do |f| %>
               <div class="input-field">
                 <i class="material-icons prefix">import_contacts</i>
-                <%= f.number_field :lodestone_id, min: 1, max: 99999999 %>
+                <%= f.number_field :lodestone_id, min: 1, max: 99999999, :required => true %>
                 <%= f.label :"lodestone_id", "○○○○○○○○" %>
                 <span class="helper-text">LodestoneのキャラクターID (https://jp.finalfantasyxiv.com/lodestone/character/○○○○○○○○/) を入力</span>
               </div>
