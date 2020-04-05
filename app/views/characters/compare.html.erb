@@ -10,10 +10,10 @@
           <div class="valign-wrapper">
             <%= image_tag current_character.image_url, class: "circle character-image-lg", width: "80px" %>
             <div>
-              <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= current_character.name %></div>
-              <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= current_character.world %></div>
-              <div class="valign-wrapper character-prof"><i class="material-icons">star</i>RANK: #<%= current_character.rank %></div>
-              <div class="valign-wrapper character-prof">
+              <div class="valign-wrapper character-profile"><i class="material-icons">person</i><%= current_character.name %></div>
+              <div class="valign-wrapper character-profile"><i class="material-icons">place</i><%= current_character.world %></div>
+              <div class="valign-wrapper character-profile"><i class="material-icons">star</i>RANK: #<%= current_character.rank %></div>
+              <div class="valign-wrapper character-profile">
                 <i class="material-icons">import_contacts</i><%= link_to "Lodestone", "https://jp.finalfantasyxiv.com/lodestone/character/" + current_character.id.to_s + "/", target: :_blank %>
               </div>
             </div>
@@ -29,10 +29,10 @@
           <div class="valign-wrapper">
             <%= image_tag @character.image_url, class: "circle character-image-lg", width: "80px" %>
             <div>
-              <div class="valign-wrapper character-prof"><i class="material-icons">person</i><%= @character.name %></div>
-              <div class="valign-wrapper character-prof"><i class="material-icons">place</i><%= @character.world %></div>
-              <div class="valign-wrapper character-prof"><i class="material-icons">star</i>RANK: #<%= @character.rank %></div>
-              <div class="valign-wrapper character-prof">
+              <div class="valign-wrapper character-profile"><i class="material-icons">person</i><%= @character.name %></div>
+              <div class="valign-wrapper character-profile"><i class="material-icons">place</i><%= @character.world %></div>
+              <div class="valign-wrapper character-profile"><i class="material-icons">star</i>RANK: #<%= @character.rank %></div>
+              <div class="valign-wrapper character-profile">
                 <i class="material-icons">import_contacts</i><%= link_to "Lodestone", "https://jp.finalfantasyxiv.com/lodestone/character/" + @character.id.to_s + "/", target: :_blank %>
               </div>
             </div>
